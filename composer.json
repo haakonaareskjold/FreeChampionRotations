@@ -2,9 +2,6 @@
     "name": "haakon/api-test",
     "description": "testing out REST API",
     "type": "project",
-    "require-dev": {
-        "squizlabs/php_codesniffer": "^3.5"
-    },
     "license": "proprietary",
     "authors": [
         {
@@ -12,10 +9,8 @@
             "email": "aareskjold.haakon@gmail.com"
         }
     ],
-    "require": {},
-    "autoload": {
-        "psr-4": {
-            "API\\": "src/"
-        }
-    }
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.5"
+    },
+    "require": {}
 }

@@ -12,10 +12,14 @@ declare(strict_types=1);
 
 require_once __DIR__ . "/../vendor/autoload.php";
 
-use API\API;
-
-
-
+if (!empty($_GET['key'])) {
+    $freechampions = 'https://euw1.api.riotgames.com/lol/platform/v3/champion-rotations?api_key='
+    . $_GET['key'];
+            
+    $champions_json = file_get_contents($freechampions);
+    $champions_array = json_decode($champions_json, true);
+    $championsID = $champions_array['freeChampionIds'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,13 +30,16 @@ use API\API;
 </head>
 <body>
     <form action="GET">
-        <label for="apikey">Submit the API Key here: </label><input type="text" name="apikey" autofocus>
+        <label for="key">Submit the API Key here: </label><input type="text" name="key" autofocus>
         <button type="submit">submit</button>
     </form>
-    <div class="champions">
+    
+    <div class="freechampions">
+        <h1>Champions available this week:</h1>
     <?php
-    $championsID = new API();
-    $championsID->freeChampions();
+    foreach ($championsID as $value) {
+        echo $value . "<br>";
+    }
     ?>
     </div>
 </body>
