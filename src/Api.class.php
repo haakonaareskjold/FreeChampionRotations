@@ -14,7 +14,7 @@ namespace API;
  * @api http://ddragon.leagueoflegends.com/cdn/10.4.1/data/en_US/champion.json
  */
 
-class ChampionName
+class API
 {
     /**
      * method to display champion ID
@@ -32,6 +32,9 @@ class ChampionName
             $championsID = $champions_array['freeChampionIds'];
             # TODO
             # check in second API json for matching IDs and replace with names
+            foreach ($championsID as $value) {
+                echo $value . "<br>";
+            }
         }
     }
 }
