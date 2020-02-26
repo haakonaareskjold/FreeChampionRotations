@@ -12,9 +12,12 @@ class Api
                 
         $champions_json = file_get_contents($freechampions);
         $champions_array = json_decode($champions_json, true);
-        $id = $champions_array['freeChampionIds'];
+        $this->id = $champions_array['freeChampionIds'];
+    }
 
-        foreach ($id as $value) {
+    public function results()
+    {
+        foreach ($this->id as $value) {
             echo $value . "<br>";
         }
     }

@@ -14,8 +14,8 @@ require_once __DIR__ . "/../src/bootstrap.php";
 use App\classes\Api;
 
 if (!empty($_GET['key'])) {
-    $fetchID = new api();
-    $fetchID->fetchID();
+    $api = new api();
+    $api->fetchID();
 }
 ?>
 <!DOCTYPE html>
@@ -34,6 +34,7 @@ if (!empty($_GET['key'])) {
     <div class="freechampions">
         <h1>Champions available this week:</h1>
     <?php
+    $api->results();
     ?>
     </div>
 </body>
