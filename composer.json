@@ -12,5 +12,9 @@
     "require-dev": {
         "squizlabs/php_codesniffer": "^3.5"
     },
-    "require": {}
+    "require": {},
+    "autoload": {
+        "psr-4": {"App\\": "src/"
+        }
+    }
 }
