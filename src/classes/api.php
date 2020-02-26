@@ -4,6 +4,7 @@ namespace App\classes;
 
 class Api
 {
+    private $id;
 
     public function fetchID()
     {
