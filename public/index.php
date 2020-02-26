@@ -11,11 +11,11 @@ declare(strict_types=1);
 
 require_once __DIR__ . "/../src/bootstrap.php";
 
-use App\classes\Api;
+use App\Classes\Api;
 
 if (!empty($_GET['key'])) {
-    $api = new api();
-    $api->fetchID();
+    $result = new api();
+    $result->fetchID();
 }
 ?>
 <!DOCTYPE html>
@@ -24,20 +24,21 @@ if (!empty($_GET['key'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Free Champions Rotations</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <form action="GET">
-        <label for="key">Submit the API Key here: </label><input type="text" name="key" autofocus>
+        <label for="key">Submit the API Key here: </label><input type="text" name="key" autofocus 
+        placeholder="RGAPI-68437c4c-a743-424a-b548-a16f5a074d5e">
         <button type="submit">submit</button>
     </form>
-    
+    <br>
     <div class="freechampions">
-        <h1>Champions available this week:</h1>
+        <h1>Champions available in week <?php echo date('W'); ?>:</h1>
     <?php
-    $api->results();
-    $api->convert();
-    var_dump($api->convert());
+    $result->results();
     ?>
+    <br>
     </div>
 </body>
 </html>
