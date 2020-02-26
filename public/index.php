@@ -35,6 +35,8 @@ if (!empty($_GET['key'])) {
         <h1>Champions available this week:</h1>
     <?php
     $api->results();
+    $api->convert();
+    var_dump($api->convert());
     ?>
     </div>
 </body>
