@@ -34,7 +34,7 @@ if (!empty($_GET['key'])) {
     </form>
     <br>
     <div class="freechampions">
-        <h1>Champions available in week <?php echo date('W'); ?>:</h1>
+        <h1>Champions available on EUW in week <?php echo date('W'); ?>:</h1>
     <?php
     $result->results();
     ?>
