@@ -5,14 +5,19 @@ namespace App\Classes;
 class Api
 {
     private $id;
-    public $ddragon_array;
+    private $ddragon_array;
+    private const EUW_SERVER = "https://euw1.api.riotgames.com/";
+    private const NA_SERVER = "https://na1.api.riotgames.com/";
+    
 
     public function fetchID()
     {
 
-        $freechampions = 'https://euw1.api.riotgames.com/lol/platform/v3/champion-rotations?api_key='
-        . $_GET['key'];
-                
+        if (isset($_GET['EUW'])) {
+            $freechampions = self::EUW_SERVER . 'lol/platform/v3/champion-rotations?api_key=' . $_GET['key'];
+        } else {
+            $freechampions = self::NA_SERVER . 'lol/platform/v3/champion-rotations?api_key=' . $_GET['key'];
+        }  
         $champions_json = file_get_contents($freechampions);
         $champions_array = json_decode($champions_json, true);
         $this->id = $champions_array['freeChampionIds'];
