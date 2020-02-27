@@ -30,15 +30,19 @@ if (!empty($_GET['key'])) {
     <form action="GET">
         <label for="key">Submit the API Key here: </label><input type="text" name="key" autofocus 
         placeholder="RGAPI-68437c4c-a743-424a-b548-a16f5a074d5e">
+        <br>
         <label for="EUW">EUW</label><input type="radio" name="EUW" value="EUW">
         <label for="NA">NA</label><input type="radio" name="NA" value="NA">
-        <button type="submit">submit</button>
+        <br>
+        <button class="submit" type="submit">submit</button>
     </form>
     <br>
     <div class="freechampions">
         <h1>Champions available on EUW in week <?php echo date('W'); ?>:</h1>
     <?php
-    $result->results();
+    if (!empty($_GET['key'])) {
+        $result->results();
+    }
     ?>
     <br>
     </div>

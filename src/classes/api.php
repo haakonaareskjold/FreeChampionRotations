@@ -17,7 +17,7 @@ class Api
             $freechampions = self::EUW_SERVER . 'lol/platform/v3/champion-rotations?api_key=' . $_GET['key'];
         } else {
             $freechampions = self::NA_SERVER . 'lol/platform/v3/champion-rotations?api_key=' . $_GET['key'];
-        }  
+        }
         $champions_json = file_get_contents($freechampions);
         $champions_array = json_decode($champions_json, true);
         $this->id = $champions_array['freeChampionIds'];

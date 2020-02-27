@@ -2,6 +2,10 @@ body {
     text-align: center;
 }
 
+.submit {
+    width: 10em;  height: 3em;
+}
+
 .freechampions {
     border-width:3px;
     border-style:solid;
