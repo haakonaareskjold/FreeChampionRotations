@@ -27,7 +27,7 @@ class Api
         foreach ($this->ddragon_array['data'] as $champ) {
             foreach ($this->id as $freeid) {
                 if ($champ["key"] == $freeid) {
-                    echo $champ["id"] . "<br>" . PHP_EOL;
+                    echo $champ["id"] . "<br>";
                 }
             }
         }
