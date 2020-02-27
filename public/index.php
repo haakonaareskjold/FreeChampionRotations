@@ -27,18 +27,21 @@ if (!empty($_GET['key'])) {
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <h1>Free Champions Rotations League of Legends</h1>
     <form action="GET">
         <label for="key">Submit the API Key here: </label><input type="text" name="key" autofocus 
         placeholder="RGAPI-68437c4c-a743-424a-b548-a16f5a074d5e">
         <br>
-        <label for="EUW">EUW</label><input type="radio" name="EUW" value="EUW">
-        <label for="NA">NA</label><input type="radio" name="NA" value="NA">
+        <p>Pick either one:</p>
+        <label for="EUW">EUW</label><input type="radio" name="EUW">
+        <label for="NA">NA</label><input type="radio" name="NA">
         <br>
         <button class="submit" type="submit">submit</button>
     </form>
     <br>
+    <hr>
+    <h2>Free champions available in week <?php echo date('W'); ?>:</h2>
     <div class="freechampions">
-        <h1>Free champions available in week <?php echo date('W'); ?>:</h1>
     <?php
     if (!empty($_GET['key'])) {
         $result->results();
