@@ -1,5 +1,5 @@
 # Free Champion Rotations
-### Free Champion rotations for league of legends on EUW
+### Free Champion rotations for league of legends
 
 * enable the class autoloader \
 `composer install --no-dev` 
