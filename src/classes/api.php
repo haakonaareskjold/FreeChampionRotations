@@ -8,6 +8,7 @@ class Api
     private $ddragon_array;
     private const EUW_SERVER = "https://euw1.api.riotgames.com/";
     private const NA_SERVER = "https://na1.api.riotgames.com/";
+    private const IMG = "https://ddragon.leagueoflegends.com/cdn/10.4.1/img/champion/";
     
 
     public function fetchID()
@@ -32,7 +33,8 @@ class Api
         foreach ($this->ddragon_array['data'] as $champ) {
             foreach ($this->id as $freeid) {
                 if ($champ["key"] == $freeid) {
-                    echo $champ["id"] . "<br>";
+                    $displayImg = self::IMG . $champ["id"] . ".png";
+                    echo '<img src="'.$displayImg.'">';
                 }
             }
         }
