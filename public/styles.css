@@ -7,14 +7,11 @@ body {
 }
 
 .freechampions {
-    border-width:3px;
-    border-style:solid;
-    border-color:black;
-    display: block;
+   
         margin-left: auto;
         margin-right: auto;
-        width: 60%;
-        height:40%;
+        width: 35%;
+        height:100%;
         line-height: 2em;
         font-weight: bold;
 }
