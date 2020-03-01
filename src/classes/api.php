@@ -14,7 +14,7 @@ class Api
     public function fetchID()
     {
 
-        if (isset($_GET['EUW'])) {
+        if (isset($_GET['Location'])) {
             $freechampions = self::EUW_SERVER . 'lol/platform/v3/champion-rotations?api_key=' . $_GET['key'];
         } else {
             $freechampions = self::NA_SERVER . 'lol/platform/v3/champion-rotations?api_key=' . $_GET['key'];

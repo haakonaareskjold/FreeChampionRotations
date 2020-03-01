@@ -32,9 +32,9 @@ if (!empty($_GET['key'])) {
         <label for="key">Submit the API Key here: </label><input type="text" name="key" autofocus 
         placeholder="RGAPI-68437c4c-a743-424a-b548-a16f5a074d5e">
         <br>
-        <p>Pick either one:</p>
-        <label for="EUW">EUW</label><input type="radio" name="EUW">
-        <label for="NA">NA</label><input type="radio" name="NA">
+        <br>
+        <label for="EUW">EUW</label><input type="radio" name="location" value="EUW" checked>
+        <label for="NA">NA</label><input type="radio" name="location" value="NA">
         <br>
         <button class="submit" type="submit">submit</button>
     </form>
