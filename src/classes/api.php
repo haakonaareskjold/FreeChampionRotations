@@ -6,6 +6,7 @@ class Api
 {
     private $id;
     private $ddragon_array;
+    private $freechampions;
     private const EUW_SERVER = "https://euw1.api.riotgames.com/";
     private const NA_SERVER = "https://na1.api.riotgames.com/";
     private const IMG = "https://ddragon.leagueoflegends.com/cdn/10.4.1/img/champion/";
@@ -15,11 +16,11 @@ class Api
     {
 
         if (isset($_GET['Location'])) {
-            $freechampions = self::EUW_SERVER . 'lol/platform/v3/champion-rotations?api_key=' . $_GET['key'];
+            $this->freechampions = self::EUW_SERVER . 'lol/platform/v3/champion-rotations?api_key=' . $_GET['key'];
         } else {
-            $freechampions = self::NA_SERVER . 'lol/platform/v3/champion-rotations?api_key=' . $_GET['key'];
+            $this->freechampions = self::NA_SERVER . 'lol/platform/v3/champion-rotations?api_key=' . $_GET['key'];
         }
-        $champions_json = file_get_contents($freechampions);
+        $champions_json = file_get_contents($this->freechampions);
         $champions_array = json_decode($champions_json, true);
         $this->id = $champions_array['freeChampionIds'];
 
@@ -37,6 +38,17 @@ class Api
                     echo '<img src="'.$displayImg.'">';
                 }
             }
+        }
+    }
+
+    public function serverCheck()
+    {
+        $url = $this->freechampions . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+
+        if (strpos($url,'EUW') == true) {
+            echo 'EUW';
+        } else {
+            echo 'NA';
         }
     }
 }

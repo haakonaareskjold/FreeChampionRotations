@@ -15,3 +15,8 @@ body {
         line-height: 2em;
         font-weight: bold;
 }
+
+.servername {
+   
+    color: blueviolet;
+}

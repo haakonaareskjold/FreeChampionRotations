@@ -40,7 +40,7 @@ if (!empty($_GET['key'])) {
     </form>
     <br>
     <hr>
-    <h2>Free champions available in week <?php echo date('W'); ?>:</h2>
+    <h2>Free champions available on <span class="servername"><?php $result->serverCheck(); ?></span> server in week <?php echo date('W'); ?>:</h2>
     <div class="freechampions">
     <?php
     if (!empty($_GET['key'])) {
