@@ -1,5 +1,6 @@
 body {
     text-align: center;
+    background-color: skyblue;
 }
 
 .submit {
@@ -19,4 +20,9 @@ body {
 .servername {
    
     color: blueviolet;
+}
+
+.error {
+    color: #D8000C;
+    background-color: #FFD2D2;
 }
