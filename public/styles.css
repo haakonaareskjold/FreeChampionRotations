@@ -101,13 +101,15 @@ h1.game {
   div.item {
     vertical-align: top;
     display: inline-block;
-    text-align: center;
-    width: 120px;
+    width: 100px;
+    align-content: center;
 }
+
 img {
-    width: 120px;
+    width: 100px;
     height: 100px;
     background-color: grey;
+    
 }
 .caption {
     display: block;
