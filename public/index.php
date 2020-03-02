@@ -36,12 +36,12 @@ use App\Classes\Guzzleclass;
     </form>
     <br>
     <hr>
-    <h2>Free champions available on 
     <?php
     if (empty($_POST)) {
-        echo "<h2><span class='error'>Please pick a server to see the content</span></h2>";
+        ?><br><h1><span class="error">Please pick a server to reveal its content</span></h1><br><?php
     } else {
-        ?><span class="servername"><?php $guzzle->serverCheck(); ?></span> server in week <?php echo date('W');
+        ?><h2>Free champions available on <span class="servername"><?php $guzzle->serverCheck(); ?>
+        </span> server in week <?php echo date('W');
     }?></h2>
     <div class="freechampions">
     <?php
