@@ -1,10 +1,14 @@
 body {
     text-align: center;
-    background-color: skyblue;
+    background-color:#333;
 }
 
 .submit {
     width: 10em;  height: 3em;
+}
+
+h1, h2 {
+  color: #cc3300;
 }
 
 .freechampions {
@@ -19,10 +23,82 @@ body {
 
 .servername {
    
-    color: blueviolet;
+    color: salmon;
 }
 
 .error {
     color: #D8000C;
     background-color: #FFD2D2;
+}
+
+#countholder .link{
+    margin-top: 40px;
+  }
+   
+  #countholder a{
+    display: inline-block;
+    color: #fff;
+    font-size: 20px;
+    padding: 20px;
+    background: #265;
+    border-radius: 10px;
+    text-decoration: none;
+  }
+   
+  #countholder a:hover{
+    background: #487;
+  }
+   
+  #countholder{
+   font-family: sans-serif;
+   color: #fff;
+   display: inline-block;
+   font-weight: 100;
+   text-align: center;
+   font-size: 48px;
+   background-color: #333;
+   padding:20px;
+   border-radius: 6px;
+   margin-bottom:30px;
+   line-height: 1.4;
+  }
+   
+   
+  #countholder > div{
+   padding: 4px 10px;
+   border-radius: 3px;
+   background: #cc3300;
+   display: inline-block;
+  }
+   
+  #countholder div > span{
+   border-radius: 3px;
+   background: #cc3300;
+   display: inline-block;
+  }
+   
+  #countholder .smalltext{
+   padding-top: 5px;
+   font-size: 16px;
+  }
+
+
+  div.item {
+    vertical-align: top;
+    display: inline-block;
+    text-align: center;
+    width: 120px;
+}
+img {
+    width: 120px;
+    height: 100px;
+    background-color: grey;
+}
+.caption {
+    display: block;
+    position: relative;
+    bottom: 10px;
+    border-style: solid;
+    color: #cc3300;
+    font-weight: 900;
 }

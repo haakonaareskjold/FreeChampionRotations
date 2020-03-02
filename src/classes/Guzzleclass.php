@@ -38,7 +38,13 @@ class Guzzleclass
             foreach ($this->id as $freeid) {
                 if ($champ["key"] == $freeid) {
                     $displayImg = self::IMG . $champ["id"] . ".png";
+                    ?> <div class="item">
+                    <?php
                     echo '<img src="' . $displayImg . '">';
+                    ?>
+                   <span class="caption"><?php echo $champ['id']; ?></span>
+                    </div>
+                    <?php
                 }
             }
         }
