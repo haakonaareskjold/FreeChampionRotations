@@ -14,12 +14,12 @@ class Guzzleclass
     {
         // V3 champion rotation API
         if (isset($_GET['Location'])) {
-        $riotapi = new Client();
-        $response = $riotapi->request('GET', 'https://euw1.api.riotgames.com/lol/platform/v3/champion-rotations?api_key=' . $_GET['key']);
-    } else {
-        $riotapi = new Client();
-        $response = $riotapi->request('GET', 'https://na1.api.riotgames.com/lol/platform/v3/champion-rotations?api_key=' . $_GET['key']);
-    }
+            $riotapi = new Client();
+            $response = $riotapi->request('GET', 'https://euw1.api.riotgames.com/lol/platform/v3/champion-rotations?api_key=' . $_GET['key']);
+        } else {
+            $riotapi = new Client();
+            $response = $riotapi->request('GET', 'https://na1.api.riotgames.com/lol/platform/v3/champion-rotations?api_key=' . $_GET['key']);
+        }
         // Champion V3 REST API
         $guzzle_json =  $response->getBody();
         $guzzle_array = json_decode($guzzle_json, true);
@@ -38,7 +38,7 @@ class Guzzleclass
             foreach ($this->id as $freeid) {
                 if ($champ["key"] == $freeid) {
                     $displayImg = self::IMG . $champ["id"] . ".png";
-                    echo '<img src="'.$displayImg.'">';
+                    echo '<img src="' . $displayImg . '">';
                 }
             }
         }
@@ -48,11 +48,10 @@ class Guzzleclass
     {
         $url =  $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
 
-        if (strpos($url,'EUW') == true) {
+        if (strpos($url, 'EUW') == true) {
             echo 'EUW';
         } else {
             echo 'NA';
         }
     }
-
 }

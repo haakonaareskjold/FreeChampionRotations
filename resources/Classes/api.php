@@ -35,7 +35,7 @@ class Api
             foreach ($this->id as $freeid) {
                 if ($champ["key"] == $freeid) {
                     $displayImg = self::IMG . $champ["id"] . ".png";
-                    echo '<img src="'.$displayImg.'">';
+                    echo '<img src="' . $displayImg . '">';
                 }
             }
         }
@@ -45,7 +45,7 @@ class Api
     {
         $url = $this->freechampions . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
 
-        if (strpos($url,'EUW') == true) {
+        if (strpos($url, 'EUW') == true) {
             echo 'EUW';
         } else {
             echo 'NA';

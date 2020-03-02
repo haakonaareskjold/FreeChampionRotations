@@ -43,10 +43,12 @@ if (!empty($_GET['key'])) {
     <hr>
     <?php
     if (!empty($_GET['key'])) {
-    ?>
+        ?>
     <h2>Free champions available on <span class="servername"><?php $guzzle->serverCheck(); ?></span> server in week <?php echo date('W'); ?></h2>
-    <?php 
-    } else echo "<h2><span class='error'>Please submit a valid API key to be able to see the content</span></h2>"
+        <?php
+    } else {
+        echo "<h2><span class='error'>Please submit a valid API key to be able to see the content</span></h2>";
+    }
     ?>
     <div class="freechampions">
     <?php
