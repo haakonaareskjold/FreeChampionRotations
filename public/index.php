@@ -11,11 +11,12 @@ declare(strict_types=1);
 
 require_once __DIR__ . "/../src/bootstrap.php";
 
-use App\Classes\Api;
+use App\Classes\Guzzleclass;
+
 
 if (!empty($_GET['key'])) {
-    $result = new api();
-    $result->fetchID();
+    $guzzle = new Guzzleclass();
+    $guzzle->fetchID();
 }
 ?>
 <!DOCTYPE html>
@@ -43,14 +44,14 @@ if (!empty($_GET['key'])) {
     <?php
     if (!empty($_GET['key'])) {
     ?>
-    <h2>Free champions available on <span class="servername"><?php $result->serverCheck(); ?></span> server in week <?php echo date('W'); ?></h2>
+    <h2>Free champions available on <span class="servername"><?php $guzzle->serverCheck(); ?></span> server in week <?php echo date('W'); ?></h2>
     <?php 
     } else echo "<h2><span class='error'>Please submit a valid API key to be able to see the content</span></h2>"
     ?>
     <div class="freechampions">
     <?php
     if (!empty($_GET['key'])) {
-        $result->results();
+        $guzzle->guzzleResults();
     }
     ?>
     <br>
