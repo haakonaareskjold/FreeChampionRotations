@@ -13,11 +13,6 @@ require_once __DIR__ . "/../src/bootstrap.php";
 
 use App\Classes\Guzzleclass;
 
-
-if (!empty($_GET['key'])) {
-    $guzzle = new Guzzleclass();
-    $guzzle->fetchID();
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,32 +23,29 @@ if (!empty($_GET['key'])) {
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Free Champions Rotations League of Legends</h1>
-    <!-- For development -->
-    <form action="GET">
-        <label for="key">Submit the API Key here: </label><input type="text" name="key" autofocus 
-        placeholder="RGAPI-68437c4c-a743-424a-b548-a16f5a074d5e">
-        <br>
-        <br>
-        <label for="EUW">EUW</label><input type="radio" name="location" value="EUW" checked>
-        <label for="NA">NA</label><input type="radio" name="location" value="NA">
-        <br>
-        <button class="submit" type="submit">submit</button>
+    <?php
+    if (!empty($_POST)) {
+        $guzzle = new Guzzleclass();
+        $guzzle->fetchID();
+    }
+    ?>
+    <h1>Free Champion Rotations</h1><h1 class="game">League of Legends</h1>
+     <form method="POST">
+        <input class="submit" type="submit" name="EUW" value="EUW">
+        <input class="submit" type="submit" name="NA" value="NA">
     </form>
     <br>
     <hr>
+    <h2>Free champions available on 
     <?php
-    if (!empty($_GET['key'])) {
-        ?>
-    <h2>Free champions available on <span class="servername"><?php $guzzle->serverCheck(); ?></span> server in week <?php echo date('W'); ?></h2>
-        <?php
+    if (empty($_POST)) {
+        echo "<h2><span class='error'>Please pick a server to see the content</span></h2>";
     } else {
-        echo "<h2><span class='error'>Please submit a valid API key to be able to see the content</span></h2>";
-    }
-    ?>
+        ?><span class="servername"><?php $guzzle->serverCheck(); ?></span> server in week <?php echo date('W');
+    }?></h2>
     <div class="freechampions">
     <?php
-    if (!empty($_GET['key'])) {
+    if (!empty($_POST)) {
         $guzzle->guzzleResults();
     }
     "<br>";
@@ -72,7 +64,8 @@ if (!empty($_GET['key'])) {
         function getSeconds() {
         var nowDate = new Date();
         var dy = 1 ; //Sunday through Saturday, 0 to 6
-        var countertime = new Date(nowDate.getFullYear(),nowDate.getMonth(),nowDate.getDate(),24,0,0); //20 out of 24 hours = 8pm
+        var countertime = new Date(
+            nowDate.getFullYear(),nowDate.getMonth(),nowDate.getDate(),24,0,0); //20 out of 24 hours = 8pm
         
         var curtime = nowDate.getTime(); //current time
         var atime = countertime.getTime(); //countdown time

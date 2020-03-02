@@ -5,10 +5,18 @@ body {
 
 .submit {
     width: 10em;  height: 3em;
+    background-color: #cc3300;
+    color: wheat;
+    font-weight: 900;
+    border: none
 }
 
 h1, h2 {
   color: #cc3300;
+}
+
+h1.game {
+  color: salmon;
 }
 
 .freechampions {
@@ -51,7 +59,7 @@ h1, h2 {
    
   #countholder{
    font-family: sans-serif;
-   color: #fff;
+   color: wheat;
    display: inline-block;
    font-weight: 100;
    text-align: center;
@@ -98,7 +106,8 @@ img {
     display: block;
     position: relative;
     bottom: 10px;
-    border-style: solid;
-    color: #cc3300;
+    border: none;
+    color: wheat;
     font-weight: 900;
+    background-color: #cc3300;
 }

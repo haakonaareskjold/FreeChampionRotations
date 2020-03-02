@@ -9,17 +9,25 @@ class Guzzleclass
     private $id;
     private $content;
     private const IMG = "https://ddragon.leagueoflegends.com/cdn/10.4.1/img/champion/";
+    private const KEY = "RGAPI-68437c4c-a743-424a-b548-a16f5a074d5e";
 
     public function fetchID()
     {
+        if (isset($_POST['EUW'])) {
         // V3 champion rotation API
-        if (isset($_GET['Location'])) {
             $riotapi = new Client();
-            $response = $riotapi->request('GET', 'https://euw1.api.riotgames.com/lol/platform/v3/champion-rotations?api_key=' . $_GET['key']);
-        } else {
-            $riotapi = new Client();
-            $response = $riotapi->request('GET', 'https://na1.api.riotgames.com/lol/platform/v3/champion-rotations?api_key=' . $_GET['key']);
+            $response = $riotapi->request(
+                'GET',
+                'https://euw1.api.riotgames.com/lol/platform/v3/champion-rotations?api_key=' . self::KEY
+            );
+        } elseif (isset($_POST['NA'])) {
+               $riotapi = new Client();
+               $response = $riotapi->request(
+                   'GET',
+                   'https://na1.api.riotgames.com/lol/platform/v3/champion-rotations?api_key=' . self::KEY
+               );
         }
+
         // Champion V3 REST API
         $guzzle_json =  $response->getBody();
         $guzzle_array = json_decode($guzzle_json, true);
@@ -52,11 +60,9 @@ class Guzzleclass
 
     public function serverCheck()
     {
-        $url =  $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
-
-        if (strpos($url, 'EUW') == true) {
+        if (isset($_POST['EUW'])) {
             echo 'EUW';
-        } else {
+        } elseif (isset($_POST['NA'])) {
             echo 'NA';
         }
     }
