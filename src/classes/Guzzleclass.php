@@ -10,11 +10,11 @@ class Guzzleclass
     private $content;
     private const IMG = "https://ddragon.leagueoflegends.com/cdn/10.4.1/img/champion/"; // patch 10.4.1
     private const CHAMPIONS = "http://ddragon.leagueoflegends.com/cdn/10.4.1/data/en_US/champion.json"; // patch 10.4.1
-    private const KEY = "SUBMIT KEY HERE"; // dev API KEY
+    private const KEY = "SUBMIT_KEY_HERE"; // API KEY
 
     public function fetchID()
     {
-        if (self::KEY == "SUBMIT KEY HERE") {
+        if (self::KEY == "SUBMIT_KEY_HERE") {
         die('Please replace the const KEY with an actual key in Guzzleclass.php');
         }
         if (isset($_POST['EUW'])) {
