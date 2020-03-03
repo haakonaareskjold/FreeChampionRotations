@@ -6,29 +6,30 @@ use GuzzleHttp\Client;
 
 class Guzzleclass
 {
+    private $key;
     private $id;
     private $content;
     private const IMG = "https://ddragon.leagueoflegends.com/cdn/10.4.1/img/champion/"; // patch 10.4.1
     private const CHAMPIONS = "http://ddragon.leagueoflegends.com/cdn/10.4.1/data/en_US/champion.json"; // patch 10.4.1
-    private const KEY = "SUBMIT_KEY_HERE"; // API KEY
 
     public function fetchID()
     {
-        if (self::KEY == "SUBMIT_KEY_HERE") {
-            die('Please replace the const KEY with an actual key in Guzzleclass.php');
+        $this->key =  getenv('API'); // API KEY from .env
+        if ($this->key == "API_KEY_HERE" || $this->key == null) {
+            die('Please put your actual API key in the .env file');
         }
         if (isset($_POST['EUW'])) {
             // V3 champion rotation API
             $riotapi = new Client();
             $response = $riotapi->request(
                 'GET',
-                'https://euw1.api.riotgames.com/lol/platform/v3/champion-rotations?api_key=' . self::KEY
+                'https://euw1.api.riotgames.com/lol/platform/v3/champion-rotations?api_key=' . $this->key
             );
         } elseif (isset($_POST['NA'])) {
             $riotapi = new Client();
             $response = $riotapi->request(
                 'GET',
-                'https://na1.api.riotgames.com/lol/platform/v3/champion-rotations?api_key=' . self::KEY
+                'https://na1.api.riotgames.com/lol/platform/v3/champion-rotations?api_key=' . $this->key
             );
         }
 
@@ -49,14 +50,13 @@ class Guzzleclass
         foreach ($this->content['data'] as $champ) {
             foreach ($this->id as $freeid) {
                 if ($champ["key"] == $freeid) {
-                    $displayImg = self::IMG . $champ["id"] . ".png";
-?> <div class="item">
+                    $displayImg = self::IMG . $champ["id"] . ".png"; ?>
+                    <div class="item">
                         <?php
                         echo '<img src="' . $displayImg . '">';
                         ?>
                         <span class="caption"><?php echo $champ['id']; ?></span>
-                    </div>
-<?php
+                    </div><?php
                 }
             }
         }
