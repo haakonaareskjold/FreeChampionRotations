@@ -10,10 +10,13 @@ class Guzzleclass
     private $content;
     private const IMG = "https://ddragon.leagueoflegends.com/cdn/10.4.1/img/champion/"; // patch 10.4.1
     private const CHAMPIONS = "http://ddragon.leagueoflegends.com/cdn/10.4.1/data/en_US/champion.json"; // patch 10.4.1
-    private const KEY = "RGAPI-68437c4c-a743-424a-b548-a16f5a074d5e"; // dev API KEY
+    private const KEY = "SUBMIT KEY HERE"; // dev API KEY
 
     public function fetchID()
     {
+        if (self::KEY == "SUBMIT KEY HERE") {
+        die('Please replace the const KEY with an actual key in Guzzleclass.php');
+        }
         if (isset($_POST['EUW'])) {
         // V3 champion rotation API
             $riotapi = new Client();
