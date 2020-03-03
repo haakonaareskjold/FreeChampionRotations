@@ -15,21 +15,21 @@ class Guzzleclass
     public function fetchID()
     {
         if (self::KEY == "SUBMIT_KEY_HERE") {
-        die('Please replace the const KEY with an actual key in Guzzleclass.php');
+            die('Please replace the const KEY with an actual key in Guzzleclass.php');
         }
         if (isset($_POST['EUW'])) {
-        // V3 champion rotation API
+            // V3 champion rotation API
             $riotapi = new Client();
             $response = $riotapi->request(
                 'GET',
                 'https://euw1.api.riotgames.com/lol/platform/v3/champion-rotations?api_key=' . self::KEY
             );
         } elseif (isset($_POST['NA'])) {
-               $riotapi = new Client();
-               $response = $riotapi->request(
-                   'GET',
-                   'https://na1.api.riotgames.com/lol/platform/v3/champion-rotations?api_key=' . self::KEY
-               );
+            $riotapi = new Client();
+            $response = $riotapi->request(
+                'GET',
+                'https://na1.api.riotgames.com/lol/platform/v3/champion-rotations?api_key=' . self::KEY
+            );
         }
 
         // Champion V3 REST API
@@ -51,10 +51,10 @@ class Guzzleclass
                 if ($champ["key"] == $freeid) {
                     $displayImg = self::IMG . $champ["id"] . ".png";
                     ?> <div class="item">
-                    <?php
-                    echo '<img src="' . $displayImg . '">';
-                    ?>
-                   <span class="caption"><?php echo $champ['id']; ?></span>
+                        <?php
+                        echo '<img src="' . $displayImg . '">';
+                        ?>
+                        <span class="caption"><?php echo $champ['id']; ?></span>
                     </div>
                     <?php
                 }
