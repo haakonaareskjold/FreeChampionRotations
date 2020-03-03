@@ -2,7 +2,7 @@
     "name": "haakon/free-champions-rotations",
     "description": "REST API to display weekly champion rotations",
     "type": "project",
-    "license": "proprietary",
+    "license": "MIT",
     "authors": [
         {
             "name": "haakon",
