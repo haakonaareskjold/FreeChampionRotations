@@ -39,7 +39,7 @@ use App\Classes\Guzzleclass;
     <hr>
     <?php
     if (empty($_POST)) {
-        ?><br><h1><span class="error">Please pick a server to reveal its content</span></h1><br><?php
+        ?><br><h1><span class="error">Please pick a server to reveal the weekly rotation</span></h1><br><?php
     } else {
         ?><h2>Free champions available on <span class="servername"><?php $guzzle->serverCheck(); ?>
         </span> server in week <?php echo date('W');
@@ -51,11 +51,11 @@ use App\Classes\Guzzleclass;
     }
     "<br>";
     ?>
-    <h2>Until next rotation on <span class="servername"><?php $guzzle->serverCheck(); ?>:</h2>
     </div>
     <?php
     if (isset($_POST['EUW'])) {
-    ?>
+        ?>
+        <h2>Until next rotation on <span class="servername"><?php $guzzle->serverCheck(); ?>:</h2>
     <!-- 
         weekly countdown timer from vincoding
         https://vincoding.com/weekly-repeating-countdown-timer-javascript/
@@ -115,12 +115,13 @@ use App\Classes\Guzzleclass;
         getSeconds();
 }, false);
 </script>
-<?php 
-}
-?>
+        <?php
+    }
+    ?>
 <?php
 if (isset($_POST['NA'])) {
     ?>
+        <h2>Until next rotation on <span class="servername"><?php $guzzle->serverCheck(); ?>:</h2>
     <!-- 
         weekly countdown timer from vincoding
         https://vincoding.com/weekly-repeating-countdown-timer-javascript/
@@ -180,15 +181,20 @@ if (isset($_POST['NA'])) {
         getSeconds();
 }, false);
 </script>
-<?php 
+    <?php
 }
 ?>
-        
+<?php
+if (isset($_POST['EUW']) || isset($_POST['NA'])) {
+    ?>
     <div id="countholder">
  <div><span class="days" id="days"></span><div class="smalltext">Day(s)</div></div>
  <div><span class="hours" id="hours"></span><div class="smalltext">Hour(s)</div></div>
  <div><span class="minutes" id="minutes"></span><div class="smalltext">Minute(s)</div></div>
  <div><span class="seconds" id="seconds"></span><div class="smalltext">Second(s)</div></div>
 </div>
+    <?php
+}
+?>
 </body>
 </html>

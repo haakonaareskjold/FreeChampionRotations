@@ -8,8 +8,9 @@ class Guzzleclass
 {
     private $id;
     private $content;
-    private const IMG = "https://ddragon.leagueoflegends.com/cdn/10.4.1/img/champion/";
-    private const KEY = "RGAPI-68437c4c-a743-424a-b548-a16f5a074d5e";
+    private const IMG = "https://ddragon.leagueoflegends.com/cdn/10.4.1/img/champion/"; // patch 10.4.1
+    private const CHAMPIONS = "http://ddragon.leagueoflegends.com/cdn/10.4.1/data/en_US/champion.json"; // patch 10.4.1
+    private const KEY = "RGAPI-68437c4c-a743-424a-b548-a16f5a074d5e"; // dev API KEY
 
     public function fetchID()
     {
@@ -35,7 +36,7 @@ class Guzzleclass
 
         // ddragon JSON
         $ddragon = new Client();
-        $res = $ddragon->get('http://ddragon.leagueoflegends.com/cdn/9.3.1/data/en_US/champion.json');
+        $res = $ddragon->get(self::CHAMPIONS);
         $ddragon_json = $res->getBody();
         $this->content = json_decode($ddragon_json, true);
     }
