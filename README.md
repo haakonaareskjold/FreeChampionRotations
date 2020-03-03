@@ -2,9 +2,9 @@
 
 ### Installation
 
-* enable the class autoloader \
+* enable the class autoloader and guzzle with composer \
 `composer install --no-dev` 
-* use built-in webserver to see app \
+* use built-in webserver to run the app \
 `php -S localhost:8080 -t public/`
 
 ## About the project
