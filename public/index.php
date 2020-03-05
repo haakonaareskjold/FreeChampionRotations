@@ -26,6 +26,13 @@ use App\Classes\Guzzleclass;
 </head>
 
 <body>
+    <script>
+        function whiteMode() {
+            var element = document.body;
+            element.classList.toggle("white-mode");
+        }
+    </script>
+    <button class="bgButton" onclick="whiteMode()">Toggle White/Dark mode</button>
     <?php
     if (!empty($_POST)) {
         $guzzle = new Guzzleclass();
@@ -42,12 +49,12 @@ use App\Classes\Guzzleclass;
     <hr>
     <?php
     if (empty($_POST)) {
-        ?><br>
+    ?><br>
         <h1><span class="error">Please pick a server to reveal the weekly rotation</span></h1><br><?php
-    } else {
-        ?><h2>Free champions available on <span class="servername"><?php $guzzle->serverCheck(); ?>
+                                                                                                } else {
+                                                                                                    ?><h2>Free champions available on <span class="servername"><?php $guzzle->serverCheck(); ?>
             </span> server in week <?php echo date('W');
-    } ?></h2>
+                                                                                                } ?></h2>
         <div class="freechampions">
             <?php
             if (!empty($_POST)) {
@@ -58,7 +65,7 @@ use App\Classes\Guzzleclass;
         </div>
         <?php
         if (isset($_POST['EUW'])) {
-            ?>
+        ?>
             <h2>Until next rotation on <span class="servername"><?php $guzzle->serverCheck(); ?>:</h2>
             <!-- 
         weekly countdown timer from vincoding
@@ -125,12 +132,12 @@ use App\Classes\Guzzleclass;
                     getSeconds();
                 }, false);
             </script>
-            <?php
+        <?php
         }
         ?>
         <?php
         if (isset($_POST['NA'])) {
-            ?>
+        ?>
             <h2>Until next rotation on <span class="servername"><?php $guzzle->serverCheck(); ?>:</h2>
             <!-- 
         weekly countdown timer from vincoding
@@ -197,12 +204,12 @@ use App\Classes\Guzzleclass;
                     getSeconds();
                 }, false);
             </script>
-            <?php
+        <?php
         }
         ?>
         <?php
         if (isset($_POST['EUW']) || isset($_POST['NA'])) {
-            ?>
+        ?>
             <div id="countholder">
                 <div><span class="days" id="days"></span>
                     <div class="smalltext">Day(s)</div>
@@ -217,7 +224,7 @@ use App\Classes\Guzzleclass;
                     <div class="smalltext">Second(s)</div>
                 </div>
             </div>
-            <?php
+        <?php
         }
         ?>
 </body>

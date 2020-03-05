@@ -70,7 +70,6 @@ h1.game {
   font-weight: 100;
   text-align: center;
   font-size: 48px;
-  background-color: #333;
   padding: 20px;
   border-radius: 6px;
   margin-bottom: 30px;
@@ -115,4 +114,20 @@ img {
   color: wheat;
   font-weight: 900;
   background-color: #cc3300;
+}
+
+.white-mode {
+  background-color: white;
+}
+
+.bgButton {
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: grid;
+  grid-template-columns: repeat(6);
+  padding: 5px;
+  background-color: grey;
+  font-weight: 900;
+  border: none;
 }
