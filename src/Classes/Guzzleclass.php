@@ -18,14 +18,14 @@ class Guzzleclass
         if ($this->key == "API_KEY_HERE" || $this->key == null) {
             die('Please put your actual API key in the .env file');
         }
-        if (isset($_POST['EUW'])) {
+        if (isset($_POST['EUW']) || isset($_COOKIE['EUW'])) {
             // V3 champion rotation API
             $riotapi = new Client();
             $response = $riotapi->request(
                 'GET',
                 'https://euw1.api.riotgames.com/lol/platform/v3/champion-rotations?api_key=' . $this->key
             );
-        } elseif (isset($_POST['NA'])) {
+        } elseif (isset($_POST['NA']) || isset($_COOKIE['NA'])) {
             $riotapi = new Client();
             $response = $riotapi->request(
                 'GET',
@@ -34,6 +34,7 @@ class Guzzleclass
         }
 
         // Champion V3 REST API
+        #TODO - error 500 IF cookie has not been created
         $guzzle_json =  $response->getBody();
         $guzzle_array = json_decode($guzzle_json, true);
         $this->id = $guzzle_array['freeChampionIds'];
@@ -64,9 +65,9 @@ class Guzzleclass
 
     public function serverCheck()
     {
-        if (isset($_POST['EUW'])) {
+        if (isset($_POST['EUW']) || isset($_COOKIE["EUW"])) {
             echo 'EUW';
-        } elseif (isset($_POST['NA'])) {
+        } elseif (isset($_POST['NA']) || isset($_COOKIE['NA'])) {
             echo 'NA';
         }
     }

@@ -35,10 +35,27 @@ use App\Classes\Guzzleclass;
     </script>
     <button class="bgButton" onclick="whiteMode()">Toggle White/Dark mode</button>
     <?php
-    if (!empty($_POST)) {
-        $guzzle = new Guzzleclass();
-        $guzzle->fetchID();
+    $guzzle = new Guzzleclass();
+    if (isset($_POST['EUW'])) {
+        $value = 'NA';
+        setcookie('NA', $value, strtotime('-30 days'));
+        $value = 'EUW';
+        setcookie('EUW', $value, strtotime('+30 days'));
+        header("refresh:0");
+    } elseif (isset($_POST['NA'])) {
+        $value = 'EUW';
+        setcookie('EUW', $value, strtotime('-30 days'));
+        $value = 'NA';
+        setcookie('NA', $value, strtotime('+30 days'));
+        header("refresh:0");
+    } elseif (empty($_COOKIE)) {
+        ?>
+        <br>
+        <h1><span class="error">Please pick a server to reveal the weekly rotation</span></h1>
+        <br>
+        <?php
     }
+    
     ?>
     <h1>Free Champion Rotations</h1>
     <h1 class="game">League of Legends</h1>
@@ -49,13 +66,8 @@ use App\Classes\Guzzleclass;
     <br>
     <hr>
     <?php
-    if (empty($_POST)) {
-        ?>
-        <br>
-        <h1><span class="error">Please pick a server to reveal the weekly rotation</span></h1>
-        <br>
-        <?php
-    } else {
+    if (isset($_COOKIE['EUW']) || isset($_COOKIE["NA"])) {
+        $guzzle->fetchID();
         ?>
         <h2>Free champions available on <span class="servername"><?php $guzzle->serverCheck();
         ?>
@@ -65,7 +77,7 @@ use App\Classes\Guzzleclass;
     </h2>
         <div class="freechampions">
             <?php
-            if (!empty($_POST)) {
+            if (isset($_COOKIE["EUW"]) || isset($_COOKIE["NA"])) {
                 $guzzle->guzzleResults();
             }
             "<br>";
@@ -73,21 +85,21 @@ use App\Classes\Guzzleclass;
         </div>
         <?php
          $cd = new CountholderClass();
-        if (isset($_POST['EUW'])) {
+        if (isset($_COOKIE["EUW"])) {
             ?>
             <h2>Until next rotation on <span class="servername"><?php $guzzle->serverCheck(); ?>:</h2>
             <?php
             $cd->euwTimer();
         }?>
         <?php
-        if (isset($_POST['NA'])) {
+        if (isset($_COOKIE["NA"])) {
             ?>
             <h2>Until next rotation on <span class="servername"><?php $guzzle->serverCheck(); ?>:</h2>
             <?php
             $cd->naTimer();
         }?>
         <?php
-        if (isset($_POST['EUW']) || isset($_POST['NA'])) {
+        if (isset($_COOKIE["EUW"]) || isset($_COOKIE["NA"])) {
             $cd->countholder();
         }
         ?>

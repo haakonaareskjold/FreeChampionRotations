@@ -91,7 +91,7 @@ trait CountdownTrait
                     var nowDate = new Date();
                     var dy = 2; //Sunday through Saturday, 0 to 6
                     var countertime = new Date(
-                        nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 6, 0, 0);
+                        nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 7, 0, 0);
 
                     var curtime = nowDate.getTime(); //current time
                     var atime = countertime.getTime(); //countdown time

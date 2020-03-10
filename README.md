@@ -4,9 +4,9 @@
 
 - Copy the env example to an .env file, then replace the string with your API key \
 `cp .env.example .env`
-- enable the class autoloader, phpdotenv and guzzle with composer \
+- enable the class autoloader and packages required with composer \
   `composer install --no-dev`
-- use built-in webserver to run the app \
+- for testing, use built-in webserver to run the app \
   `php -S localhost:8080 -t public/`
 
 ## About the project
@@ -14,4 +14,5 @@
 * App displaying the free champions available for the current week
 * Has an option for both EUW and NA
 * Includes a countdown timer for both servers
-* Does not collect any user information
+* Has a toggle for dark/light mode
+* Uses cookies to remember which location you have chosen
