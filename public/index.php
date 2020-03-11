@@ -24,39 +24,39 @@ use App\Classes\Guzzleclass;
     <title>Free Champion Rotations</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <style>
+        .dark {
+            background-color: #333;
+        }
+    </style>
 </head>
 
 <body>
-    <script>
-        function whiteMode() {
-            var element = document.body;
-            element.classList.toggle("white-mode");
-        }
-    </script>
-    <button class="bgButton" onclick="whiteMode()">Toggle White/Dark mode</button>
-    <?php
-    $guzzle = new Guzzleclass();
-    if (isset($_POST['EUW'])) {
-        $value = 'NA';
-        setcookie('NA', $value, strtotime('-30 days'));
-        $value = 'EUW';
-        setcookie('EUW', $value, strtotime('+30 days'));
-        header("refresh:0");
-    } elseif (isset($_POST['NA'])) {
-        $value = 'EUW';
-        setcookie('EUW', $value, strtotime('-30 days'));
-        $value = 'NA';
-        setcookie('NA', $value, strtotime('+30 days'));
-        header("refresh:0");
-    } elseif (empty($_COOKIE)) {
-        ?>
+<button class="bgButton" onclick="toggle()">Toggle White/Dark mode</button>
+
+<?php
+$guzzle = new Guzzleclass();
+if (isset($_POST['EUW'])) {
+    $value = 'NA';
+    setcookie('NA', $value, strtotime('-30 days'));
+    $value = 'EUW';
+    setcookie('EUW', $value, strtotime('+30 days'));
+    header("refresh:0");
+} elseif (isset($_POST['NA'])) {
+    $value = 'EUW';
+    setcookie('EUW', $value, strtotime('-30 days'));
+    $value = 'NA';
+    setcookie('NA', $value, strtotime('+30 days'));
+    header("refresh:0");
+} elseif (empty($_COOKIE)) {
+    ?>
         <br>
         <h1><span class="error">Please pick a server to reveal the weekly rotation</span></h1>
         <br>
-        <?php
-    }
+    <?php
+}
     
-    ?>
+?>
     <h1>Free Champion Rotations</h1>
     <h1 class="game">League of Legends</h1>
     <form method="POST">
@@ -104,4 +104,17 @@ use App\Classes\Guzzleclass;
         }
         ?>
 </body>
+    <script>
+        const body = document.querySelector("body");
+        const darkCookie = document.cookie.includes("theme=dark");
+        
+        if (darkCookie) {
+            body.classList.add("dark");
+        }
+
+        function toggle() {
+            document.cookie = darkCookie ? "theme=" : "theme=dark";
+            body.classList.toggle("dark");
+        }
+    </script>
 </html>

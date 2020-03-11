@@ -1,6 +1,5 @@
 body {
   text-align: center;
-  background-color: #333;
 }
 
 .submit {
@@ -113,10 +112,6 @@ img {
   color: wheat;
   font-weight: 900;
   background-color: #cc3300;
-}
-
-.white-mode {
-  background-color: white;
 }
 
 .bgButton {

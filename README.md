@@ -14,5 +14,5 @@
 * App displaying the free champions available for the current week
 * Has an option for both EUW and NA
 * Includes a countdown timer for both servers
-* Has a toggle for dark/light mode
+* Has a toggle for dark/light mode which uses cookies
 * Uses cookies to remember which location you have chosen
