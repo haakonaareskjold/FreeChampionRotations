@@ -29,7 +29,7 @@ use App\Classes\Guzzleclass;
     <meta name="keywords" content="LOL, league of legends, free champions, rotations, current week">
     <style>
         .dark {
-            background-color: #fff;
+            background-color: #333;
         }
     </style>
 </head>
