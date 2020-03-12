@@ -119,7 +119,7 @@ use App\Classes\Guzzleclass;
     }
 
     function toggle() {
-        document.cookie = darkCookie ? "theme=" : "theme=dark";
+        document.cookie = darkCookie ? "theme=" : "theme=dark;max-age=31536000";
         body.classList.toggle("dark");
     }
 </script>

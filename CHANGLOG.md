@@ -12,6 +12,7 @@
 ### 1.1.1 - 12/03/2020
 
 * Added exceptions for client- and server side errors
+* Put expiration time  for JS cookies(for light/dark mode)
 
 ### 1.1.0 - 11/03/2020
 
