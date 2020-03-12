@@ -44,6 +44,18 @@ h1.game {
   grid-template-columns: repeat(12);
 }
 
+.httpError {
+  color: #d8000c;
+  left: 0;
+  position: absolute;
+  text-align: center;
+  font-size: 3em;
+  top: 50%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(12);
+}
+
 #countholder .link {
   margin-top: 40px;
 }

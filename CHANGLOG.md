@@ -1,9 +1,17 @@
 # Changelog
 
+## TODO
+
+* Add feature with caching for ARAM (has to include caching of two previous rotations / including the current one)
+
 
 ---
 
 ## All notable changes to this publication will be documented in this file.
+
+### 1.1.1 - 12/03/2020
+
+* Added exceptions for client- and server side errors
 
 ### 1.1.0 - 11/03/2020
 

@@ -3,6 +3,8 @@
 namespace App\Classes;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Exception\ServerException;
 
 class Guzzleclass
 {
@@ -12,12 +14,67 @@ class Guzzleclass
     private const IMG = "https://ddragon.leagueoflegends.com/cdn/10.4.1/img/champion/"; // patch 10.4.1
     private const CHAMPIONS = "http://ddragon.leagueoflegends.com/cdn/10.4.1/data/en_US/champion.json"; // patch 10.4.1
 
-    public function fetchID()
+    public function verifyNA()
     {
         $this->key =  getenv('API'); // API KEY from .env
         if ($this->key == "API_KEY_HERE" || $this->key == null) {
-            die('Please put your actual API key in the .env file');
+            die("<span class=\"httpError\">Please put your actual API key in the .env file.</span>");
         }
+
+        $client = new Client();
+        try {
+            $reponse = $client->request(
+                'GET',
+                'https://na1.api.riotgames.com/lol/platform/v3/champion-rotations?api_key=' . $this->key
+            );
+        } catch (ClientException | ServerException $e) {
+            $code = $e->getResponse()->getStatusCode();
+
+            if (
+                $code == 400 || $code == 401 || $code == 403 ||
+                $code == 404 || $code == 405 || $code == 415 || $code == 429
+            ) {
+                die("<span class=\"httpError\">A client error has occured, please try again later.</span>");
+            } elseif ($code == 500 || $code == 502 || $code == 503 || $code == 504) {
+                die("<span class=\"httpError\">A server error has occured, please try again later.</span>");
+            }
+        }
+    }
+
+    public function verifyEUW()
+    {
+        $this->key =  getenv('API'); // API KEY from .env
+        if ($this->key == "API_KEY_HERE" || $this->key == null) {
+            die("<span class=\"httpError\">Please put your actual API key in the .env file.</span>");
+        }
+
+        $client = new Client();
+        try {
+            $reponse = $client->request(
+                'GET',
+                'https://euw1.api.riotgames.com/lol/platform/v3/champion-rotations?api_key=' . $this->key
+            );
+        } catch (ClientException | ServerException $e) {
+            $code = $e->getResponse()->getStatusCode();
+
+            if (
+                $code == 400 || $code == 401 || $code == 403 ||
+                $code == 404 || $code == 405 || $code == 415 || $code == 429
+            ) {
+                die("<span class=\"httpError\">Client error [4xx] has appeared, please try again later.</span>");
+            } elseif ($code == 500 || $code == 502 || $code == 503 || $code == 504) {
+                die("<span class=\"httpError\">Server error [5xx] has appeared, please try again later.</span>");
+            }
+        }
+    }
+
+
+    
+
+    public function fetchID()
+    {
+        $this->key =  getenv('API'); // API KEY from .env
+
         if (isset($_POST['EUW']) || isset($_COOKIE['EUW'])) {
             // V3 champion rotation API
             $riotapi = new Client();

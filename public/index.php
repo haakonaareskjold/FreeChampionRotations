@@ -24,7 +24,8 @@ use App\Classes\Guzzleclass;
     <title>Free Champion Rotations</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <meta name="description" content="A simple website displaying the current free weekly champion rotation for League of Legends">
+    <meta name="description" 
+    content="A simple website displaying the current free weekly champion rotation for League of Legends">
     <meta name="keywords" content="LOL, league of legends, free champions, rotations, current week">
     <style>
         .dark {
@@ -37,7 +38,9 @@ use App\Classes\Guzzleclass;
     <button class="bgButton" onclick="toggle()">Toggle light/dark mode</button>
 
     <?php
-    $guzzle = new Guzzleclass();
+    $verify = new Guzzleclass();
+    $verify->verifyNA();
+    $verify->verifyEUW();
     if (isset($_POST['EUW'])) {
         $value = 'NA';
         setcookie('NA', $value, strtotime('-30 days'));
@@ -68,6 +71,7 @@ use App\Classes\Guzzleclass;
     <br>
     <hr>
     <?php
+    $guzzle = new Guzzleclass();
     if (isset($_COOKIE['EUW']) || isset($_COOKIE["NA"])) {
         $guzzle->fetchID();
         ?>
@@ -119,5 +123,4 @@ use App\Classes\Guzzleclass;
         body.classList.toggle("dark");
     }
 </script>
-
 </html>
