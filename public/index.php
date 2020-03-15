@@ -74,6 +74,7 @@ use App\Classes\Guzzleclass;
     $guzzle = new Guzzleclass();
     if (isset($_COOKIE['EUW']) || isset($_COOKIE["NA"])) {
         $guzzle->fetchID();
+        $guzzle->cacheChampions(); 
         ?>
         <h2>Free champions available on <span class="servername"><?php $guzzle->serverCheck();
         ?>

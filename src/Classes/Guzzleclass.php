@@ -13,6 +13,7 @@ class Guzzleclass
     private $id;
     private $content;
     private $guzzle_json;
+    private $secondID;
     private const IMG = "https://ddragon.leagueoflegends.com/cdn/10.4.1/img/champion/"; // patch 10.4.1
     private const CHAMPIONS = "http://ddragon.leagueoflegends.com/cdn/10.4.1/data/en_US/champion.json"; // patch 10.4.1
 
@@ -100,7 +101,7 @@ class Guzzleclass
 
         //caching
         $currentWeek = date('W');
-        $fp = fopen(dirname(__FILE__) . "/../Cache/week-{$currentWeek}.json", "w+");
+        $fp = fopen(dirname(__FILE__) . "/../Cache/week-{$currentWeek}.json", "w");
         fwrite($fp, $this->guzzle_json);
         fclose($fp);
 
@@ -109,6 +110,24 @@ class Guzzleclass
         $res = $ddragon->get(self::CHAMPIONS);
         $ddragon_json = $res->getBody();
         $this->content = json_decode($ddragon_json, true);
+    }
+
+    public function cacheChampions()
+    {
+        $currentWeek = date('W');
+        $previousWeek = $currentWeek - 1;
+        $previousWeekTwo = $currentWeek -2;
+        $file1 = dirname(__FILE__) . "/../Cache/week-{$previousWeek}.json";
+        $file2 = dirname(__FILE__) . "/../Cache/week-{$previousWeekTwo}.json";
+
+        if(file_exists($file1) && file_exists($file2)) {
+            $json_array = json_decode(file_get_contents($file1), true);
+            $this->secondID = $json_array['freeChampionIds'];
+            foreach($this->secondID as $value) {
+                echo $value . "<br>";
+            }
+
+        }
     }
 
 
