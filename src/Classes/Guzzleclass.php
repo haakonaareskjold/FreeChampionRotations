@@ -2,6 +2,7 @@
 
 namespace App\Classes;
 
+use DateTime;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\ServerException;
@@ -96,12 +97,20 @@ class Guzzleclass
         $guzzle_array = json_decode($guzzle_json, true);
         $this->id = $guzzle_array['freeChampionIds'];
 
+        //caching
+        $currentWeek = date('W');
+        $fp = fopen(dirname(__FILE__) . "/../Cache/week-{$currentWeek}.json", "w+");
+        fwrite($fp, $guzzle_json);
+        fclose($fp);
+
         // ddragon JSON
         $ddragon = new Client();
         $res = $ddragon->get(self::CHAMPIONS);
         $ddragon_json = $res->getBody();
         $this->content = json_decode($ddragon_json, true);
     }
+
+
 
     public function guzzleResults()
     {
