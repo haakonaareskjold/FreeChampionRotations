@@ -12,6 +12,7 @@ class Guzzleclass
     private $key;
     private $id;
     private $content;
+    private $guzzle_json;
     private const IMG = "https://ddragon.leagueoflegends.com/cdn/10.4.1/img/champion/"; // patch 10.4.1
     private const CHAMPIONS = "http://ddragon.leagueoflegends.com/cdn/10.4.1/data/en_US/champion.json"; // patch 10.4.1
 
@@ -93,14 +94,14 @@ class Guzzleclass
 
         // Champion V3 REST API
         #TODO - error 500 IF cookie has not been created
-        $guzzle_json =  $response->getBody();
-        $guzzle_array = json_decode($guzzle_json, true);
+        $this->guzzle_json =  $response->getBody();
+        $guzzle_array = json_decode($this->guzzle_json, true);
         $this->id = $guzzle_array['freeChampionIds'];
 
         //caching
         $currentWeek = date('W');
         $fp = fopen(dirname(__FILE__) . "/../Cache/week-{$currentWeek}.json", "w+");
-        fwrite($fp, $guzzle_json);
+        fwrite($fp, $this->guzzle_json);
         fclose($fp);
 
         // ddragon JSON
