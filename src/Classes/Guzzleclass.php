@@ -93,7 +93,7 @@ class Guzzleclass
                 'https://na1.api.riotgames.com/lol/platform/v3/champion-rotations?api_key=' . $this->key
             );
         }
-
+        
         // Champion V3 REST API
         $this->guzzle_json =  $response->getBody();
         $guzzle_array = json_decode($this->guzzle_json, true);
@@ -148,27 +148,18 @@ class Guzzleclass
         }
     }
 
-    public function secondWeek()
-    {
-        foreach ($this->content['data'] as $champ) {
-            foreach ($this->secondID as $freeid) {
-                if ($champ["key"] == $freeid) {
-                    $displayImg = self::IMG . $champ["id"] . ".png"; ?>
-                    <div class="item">
-                        <?php
-                        echo '<img src="' . $displayImg . '">';
-                        ?>
-                        <span class="caption"><?php echo $champ['id']; ?></span>
-                    </div><?php
-                }
-            }
-        }
-    }
 
-    public function thirdWeek()
+    public function aramChampions()
     {
+        // removing duplicates, checking for diff between the ones fetched from the API and the ones merged
+        $result = array_merge($this->secondID, $this->thirdID);
+        $aram = array_unique($result);
+        $finalresult = array_diff($aram, $this->id);
+        
+
+        //echo the data/img out
         foreach ($this->content['data'] as $champ) {
-            foreach ($this->thirdID as $freeid) {
+            foreach ($finalresult as $freeid) {
                 if ($champ["key"] == $freeid) {
                     $displayImg = self::IMG . $champ["id"] . ".png"; ?>
                     <div class="item">
@@ -194,7 +185,7 @@ class Guzzleclass
     public function clearCache()
     {
         $files = glob(dirname(__FILE__) . '/../Cache/*.json');
-        if (count($files) > 4)
+        if (count($files) > 5)
         foreach ($files as $deletefiles)
         if (time() - filectime($deletefiles) > 10 * 24 * 60 * 60)
         unlink($deletefiles);

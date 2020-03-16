@@ -86,12 +86,9 @@ use App\Classes\Guzzleclass;
             <?php
             if (isset($_COOKIE["EUW"]) || isset($_COOKIE["NA"])) {
                 $guzzle->currentWeek();
-                ?> <h2> Additional champions available in <span class="servername"> ARAM</span> only:<br>
-                <span class="notice">Notice: Duplicates does not increase chance!</span></h2>
-                <h4 class="servername"> Champions from week <?php echo date('W') - 1; ?></h4> <?php
-                $guzzle->secondWeek();
-                ?><h4 class="servername"> Champions from week <?php echo date('W') - 2; ?></h4> <?php
-                $guzzle->thirdWeek();
+                ?> <h2> Additional champions available in <span class="servername"> ARAM</span> only: </h2>
+                <?php
+                $guzzle->aramChampions();
             }
             "<br>";
             ?>
