@@ -79,6 +79,8 @@ class Guzzleclass
     {
         $this->key =  getenv('API'); // API KEY from .env
 
+
+
         if (isset($_POST['EUW']) || isset($_COOKIE['EUW'])) {
             // V3 champion rotation API
             $riotapi = new Client();
@@ -94,6 +96,8 @@ class Guzzleclass
             );
         }
         
+        
+
         // Champion V3 REST API
         $this->guzzle_json =  $response->getBody();
         $guzzle_array = json_decode($this->guzzle_json, true);
@@ -110,6 +114,23 @@ class Guzzleclass
         $res = $ddragon->get(self::CHAMPIONS);
         $ddragon_json = $res->getBody();
         $this->content = json_decode($ddragon_json, true);
+
+        //experimental - supposed to check if its within the given time and then will put this->id to use latest cache instead of API
+        if (isset($_POST['NA']) || isset($_COOKIE['NA'])) {
+            $currentTime = new DateTime();
+            $startTime = new DateTime('Tue 01:00');
+            $endTime = new DateTime('Tue 08:00');
+
+            if ($currentTime->format('D H:i:s') >= $startTime->format('D H:i:s') && $currentTime->format('D H:i:s') <= $endTime->format('D H:i:s')) {
+                $currentWeek = date('W', strtotime("- 1 day"));
+                $previousWeek = $currentWeek - 1;
+                $cachedWeek = dirname(__FILE__) . "/../Cache/week-{$previousWeek}.json";
+                if (file_exists($cachedWeek)) {
+                    $json_array_cache = json_decode(file_get_contents($cachedWeek), true);
+                    $this->id = $json_array_cache['freeChampionIds'];
+                }                    
+            }
+        }
     }
 
     public function cacheChampions()
