@@ -20,6 +20,10 @@ h1.game {
   color: salmon;
 }
 
+.notice {
+  color: orangered;
+}
+
 .freechampions {
   margin-left: auto;
   margin-right: auto;

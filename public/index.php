@@ -74,7 +74,7 @@ use App\Classes\Guzzleclass;
     $guzzle = new Guzzleclass();
     if (isset($_COOKIE['EUW']) || isset($_COOKIE["NA"])) {
         $guzzle->fetchID();
-        $guzzle->cacheChampions(); 
+        $guzzle->cacheChampions();
         ?>
         <h2>Free champions available on <span class="servername"><?php $guzzle->serverCheck();
         ?>
@@ -85,7 +85,13 @@ use App\Classes\Guzzleclass;
         <div class="freechampions">
             <?php
             if (isset($_COOKIE["EUW"]) || isset($_COOKIE["NA"])) {
-                $guzzle->guzzleResults();
+                $guzzle->currentWeek();
+                ?> <h2> Additional champions available in <span class="servername"> ARAM</span> only:<br>
+                <span class="notice">Notice: Duplicates does not increase chance!</span></h2>
+                <h4 class="servername"> Champions from week <?php echo date('W') - 1; ?></h4> <?php
+                $guzzle->secondWeek();
+                ?><h4 class="servername"> Champions from week <?php echo date('W') - 2; ?></h4> <?php
+                $guzzle->thirdWeek();
             }
             "<br>";
             ?>
@@ -109,6 +115,7 @@ use App\Classes\Guzzleclass;
         if (isset($_COOKIE["EUW"]) || isset($_COOKIE["NA"])) {
             $cd->countholder();
         }
+    $guzzle->clearCache();
         ?>
 </body>
 <script>

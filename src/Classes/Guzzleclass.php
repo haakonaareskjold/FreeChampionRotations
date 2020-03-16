@@ -14,6 +14,7 @@ class Guzzleclass
     private $content;
     private $guzzle_json;
     private $secondID;
+    private $thirdID;
     private const IMG = "https://ddragon.leagueoflegends.com/cdn/10.4.1/img/champion/"; // patch 10.4.1
     private const CHAMPIONS = "http://ddragon.leagueoflegends.com/cdn/10.4.1/data/en_US/champion.json"; // patch 10.4.1
 
@@ -94,14 +95,13 @@ class Guzzleclass
         }
 
         // Champion V3 REST API
-        #TODO - error 500 IF cookie has not been created
         $this->guzzle_json =  $response->getBody();
         $guzzle_array = json_decode($this->guzzle_json, true);
         $this->id = $guzzle_array['freeChampionIds'];
 
         //caching
-        $currentWeek = date('W');
-        $fp = fopen(dirname(__FILE__) . "/../Cache/week-{$currentWeek}.json", "w");
+        $currentWeek = date('W', strtotime("- 1 day"));
+        $fp = fopen(dirname(__FILE__) . "/../Cache/week-{$currentWeek}.json", "w+");
         fwrite($fp, $this->guzzle_json);
         fclose($fp);
 
@@ -114,28 +114,61 @@ class Guzzleclass
 
     public function cacheChampions()
     {
-        $currentWeek = date('W');
+        $currentWeek = date('W', strtotime("- 1 day"));
         $previousWeek = $currentWeek - 1;
-        $previousWeekTwo = $currentWeek -2;
+        $previousWeekTwo = $currentWeek - 2;
         $file1 = dirname(__FILE__) . "/../Cache/week-{$previousWeek}.json";
         $file2 = dirname(__FILE__) . "/../Cache/week-{$previousWeekTwo}.json";
 
-        if(file_exists($file1) && file_exists($file2)) {
+        if (file_exists($file1) && file_exists($file2)) {
             $json_array = json_decode(file_get_contents($file1), true);
             $this->secondID = $json_array['freeChampionIds'];
-            foreach($this->secondID as $value) {
-                echo $value . "<br>";
-            }
 
+            $json_array_third = json_decode(file_get_contents($file2), true);
+            $this->thirdID = $json_array_third['freeChampionIds'];
         }
     }
 
 
 
-    public function guzzleResults()
+    public function currentWeek()
     {
         foreach ($this->content['data'] as $champ) {
             foreach ($this->id as $freeid) {
+                if ($champ["key"] == $freeid) {
+                    $displayImg = self::IMG . $champ["id"] . ".png"; ?>
+                    <div class="item">
+                        <?php
+                        echo '<img src="' . $displayImg . '">';
+                        ?>
+                        <span class="caption"><?php echo $champ['id']; ?></span>
+                    </div><?php
+                }
+            }
+        }
+    }
+
+    public function secondWeek()
+    {
+        foreach ($this->content['data'] as $champ) {
+            foreach ($this->secondID as $freeid) {
+                if ($champ["key"] == $freeid) {
+                    $displayImg = self::IMG . $champ["id"] . ".png"; ?>
+                    <div class="item">
+                        <?php
+                        echo '<img src="' . $displayImg . '">';
+                        ?>
+                        <span class="caption"><?php echo $champ['id']; ?></span>
+                    </div><?php
+                }
+            }
+        }
+    }
+
+    public function thirdWeek()
+    {
+        foreach ($this->content['data'] as $champ) {
+            foreach ($this->thirdID as $freeid) {
                 if ($champ["key"] == $freeid) {
                     $displayImg = self::IMG . $champ["id"] . ".png"; ?>
                     <div class="item">
@@ -156,5 +189,14 @@ class Guzzleclass
         } elseif (isset($_POST['NA']) || isset($_COOKIE['NA'])) {
             echo 'NA';
         }
+    }
+
+    public function clearCache()
+    {
+        $files = glob(dirname(__FILE__) . '/../Cache/*.json');
+        if (count($files) > 4)
+        foreach ($files as $deletefiles)
+        if (time() - filectime($deletefiles) > 10 * 24 * 60 * 60)
+        unlink($deletefiles);
     }
 }
