@@ -104,7 +104,7 @@ class Guzzleclass
         $this->id = $guzzle_array['freeChampionIds'];
 
         //caching
-        $currentWeek = date('W', strtotime("- 1 day"));
+        $currentWeek = date('W', strtotime("- 1 day - 2 hour"));
         $fp = fopen(dirname(__FILE__) . "/../Cache/week-{$currentWeek}.json", "w+");
         fwrite($fp, $this->guzzle_json);
         fclose($fp);
@@ -122,7 +122,7 @@ class Guzzleclass
             $endTime = new DateTime('Tue 08:00');
 
             if ($currentTime->format('D H:i:s') >= $startTime->format('D H:i:s') && $currentTime->format('D H:i:s') <= $endTime->format('D H:i:s')) {
-                $currentWeek = date('W', strtotime("- 1 day"));
+                $currentWeek = date('W', strtotime("- 1 day - 2 hour"));
                 $previousWeek = $currentWeek - 1;
                 $cachedWeek = dirname(__FILE__) . "/../Cache/week-{$previousWeek}.json";
                 if (file_exists($cachedWeek)) {
@@ -135,7 +135,7 @@ class Guzzleclass
 
     public function cacheChampions()
     {
-        $currentWeek = date('W', strtotime("- 1 day"));
+        $currentWeek = date('W', strtotime("- 1 day - 2 hour"));
         $previousWeek = $currentWeek - 1;
         $previousWeekTwo = $currentWeek - 2;
         $file1 = dirname(__FILE__) . "/../Cache/week-{$previousWeek}.json";
