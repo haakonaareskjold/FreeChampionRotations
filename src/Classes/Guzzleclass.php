@@ -115,20 +115,24 @@ class Guzzleclass
         $ddragon_json = $res->getBody();
         $this->content = json_decode($ddragon_json, true);
 
-        //experimental - supposed to check if its within the given time and then will put this->id to use latest cache instead of API
+        //experimental -
+        //supposed to check if its within the given time and then will put id to use latest cache instead of API
         if (isset($_POST['NA']) || isset($_COOKIE['NA'])) {
             $currentTime = new DateTime();
             $startTime = new DateTime('Tue 01:00');
             $endTime = new DateTime('Tue 08:00');
 
-            if ($currentTime->format('D H:i:s') >= $startTime->format('D H:i:s') && $currentTime->format('D H:i:s') <= $endTime->format('D H:i:s')) {
+            if (
+                $currentTime->format('D H:i:s') >= $startTime->format('D H:i:s') &&
+                $currentTime->format('D H:i:s') <= $endTime->format('D H:i:s')
+            ) {
                 $currentWeek = date('W', strtotime("- 1 day - 2 hour"));
                 $previousWeek = $currentWeek - 1;
                 $cachedWeek = dirname(__FILE__) . "/../Cache/week-{$previousWeek}.json";
                 if (file_exists($cachedWeek)) {
                     $json_array_cache = json_decode(file_get_contents($cachedWeek), true);
                     $this->id = $json_array_cache['freeChampionIds'];
-                }                    
+                }
             }
         }
     }
@@ -139,7 +143,10 @@ class Guzzleclass
         $startTime = new DateTime('Tue 01:00');
         $endTime = new DateTime('Tue 08:00');
 
-        if ($currentTime->format('D H:i:s') >= $startTime->format('D H:i:s') && $currentTime->format('D H:i:s') <= $endTime->format('D H:i:s') && isset($_COOKIE['NA'])) {
+        if (
+            $currentTime->format('D H:i:s') >= $startTime->format('D H:i:s')
+            && $currentTime->format('D H:i:s') <= $endTime->format('D H:i:s') && isset($_COOKIE['NA'])
+        ) {
             $currentWeek = date('W', strtotime("- 1 day - 2 hour"));
             $previousWeek = $currentWeek - 2;
             $previousWeekTwo = $currentWeek - 3;
@@ -181,7 +188,7 @@ class Guzzleclass
 
 
     public function aramChampions()
-    {        
+    {
         // removing duplicates, checking for diff between the ones fetched from the API and the ones merged
         $result = array_merge($this->secondID, $this->thirdID);
         $aram = array_unique($result);
@@ -216,9 +223,12 @@ class Guzzleclass
     public function clearCache()
     {
         $files = glob(dirname(__FILE__) . '/../Cache/*.json');
-        if (count($files) > 5)
-        foreach ($files as $deletefiles)
-        if (time() - filectime($deletefiles) > 10 * 24 * 60 * 60)
-        unlink($deletefiles);
+        if (count($files) > 5) {
+            foreach ($files as $deletefiles) {
+                if (time() - filectime($deletefiles) > 10 * 24 * 60 * 60) {
+                    unlink($deletefiles);
+                }
+            }
+        }
     }
 }

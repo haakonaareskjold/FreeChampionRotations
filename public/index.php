@@ -27,11 +27,6 @@ use App\Classes\Guzzleclass;
     <meta name="description" 
     content="A simple website displaying the current free weekly champion rotation for League of Legends">
     <meta name="keywords" content="LOL, league of legends, free champions, rotations, current week">
-    <style>
-        .dark {
-            background-color: #333;
-        }
-    </style>
 </head>
 
 <body>
@@ -112,7 +107,7 @@ use App\Classes\Guzzleclass;
         if (isset($_COOKIE["EUW"]) || isset($_COOKIE["NA"])) {
             $cd->countholder();
         }
-    $guzzle->clearCache();
+        $guzzle->clearCache();
         ?>
 </body>
 <script>

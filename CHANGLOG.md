@@ -3,7 +3,7 @@
 ## TODO
 
 * (potenial issue) cache for current month (to workaround the 7h issue -  when NA cant use API since both servers uses same cache) causes \
-it to rewrite everytime a request happens, unknown if heavy on production
+it to rewrite everytime a request happens, unknown if heavy on production.  **Will test on production for one week**
 
 
 ---
@@ -15,6 +15,7 @@ it to rewrite everytime a request happens, unknown if heavy on production
 * Added ARAM champion pool
 * uses two previous rotations that is stored in a cache as json then fetched when needed
 * Added difference function between EUW and NA (the 7h timespan has to use cache for NA for current, and minus extra week for all json)
+* Changed default background to dark
 
 ### 1.1.1 - 12/03/2020
 
