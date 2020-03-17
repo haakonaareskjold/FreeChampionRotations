@@ -105,7 +105,7 @@ class Guzzleclass
 
         //caching
         $currentWeek = date('W', strtotime("- 1 day - 2 hour"));
-        $fp = fopen(dirname(__FILE__) . "/../Cache/week-{$currentWeek}.json", "w+");
+        $fp = fopen(dirname(__FILE__) . "/../Cache/week-{$currentWeek}.json", "w");
         fwrite($fp, $this->guzzle_json);
         fclose($fp);
 

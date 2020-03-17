@@ -2,12 +2,19 @@
 
 ## TODO
 
-* Add feature with caching for ARAM (has to include caching of two previous rotations / including the current one)
+* (potenial issue) cache for current month (to workaround the 7h issue -  when NA cant use API since both servers uses same cache) causes \
+it to rewrite everytime a request happens, unknown if heavy on production
 
 
 ---
 
 ## All notable changes to this publication will be documented in this file.
+
+### 1.2.0 - 17/03/2020
+
+* Added ARAM champion pool
+* uses two previous rotations that is stored in a cache as json then fetched when needed
+* Added difference function between EUW and NA (the 7h timespan has to use cache for NA for current, and minus extra week for all json)
 
 ### 1.1.1 - 12/03/2020
 
