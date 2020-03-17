@@ -12,6 +12,7 @@
 ## About the project
 
 * App displaying the free champions available for the current week
+* Displays Aram rotations (cached from previous weeks)
 * Has an option for both EUW and NA
 * Includes a countdown timer for both servers
 * Has a toggle for dark/light mode which uses cookies
