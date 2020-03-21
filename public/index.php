@@ -13,6 +13,7 @@ require_once __DIR__ . "/../src/bootstrap.php";
 
 use App\Classes\CountholderClass;
 use App\Classes\Guzzleclass;
+use App\Classes\LocationClass;
 
 ?>
 <!DOCTYPE html>
@@ -33,30 +34,23 @@ use App\Classes\Guzzleclass;
     <button class="bgButton" onclick="toggle()">Toggle light/dark mode</button>
 
     <?php
+    /**
+     * check if guzzle can fetch riot API with ENV key
+     * then if both NA and EUW has connection without errors
+     */
     $verify = new Guzzleclass();
     $verify->verifyNA();
     $verify->verifyEUW();
-    if (isset($_POST['EUW'])) {
-        $value = 'NA';
-        setcookie('NA', $value, strtotime('-30 days'));
-        $value = 'EUW';
-        setcookie('EUW', $value, strtotime('+30 days'));
-        header("refresh:0");
-    } elseif (isset($_POST['NA'])) {
-        $value = 'EUW';
-        setcookie('EUW', $value, strtotime('-30 days'));
-        $value = 'NA';
-        setcookie('NA', $value, strtotime('+30 days'));
-        header("refresh:0");
-    } elseif (empty($_COOKIE)) {
-        ?>
-        <br>
-        <h1><span class="error">Please pick a server to reveal the weekly rotation</span></h1>
-        <br>
-        <?php
-    }
+    
+    //geolocation
+    $location = new LocationClass();
+    $location->getIP();
+    $location->fetch();
+    $location->pickServer();
+    $location->geoLocation();
 
     ?>
+
     <h1>Free Champion Rotations</h1>
     <h1 class="game">League of Legends</h1>
     <form method="POST">

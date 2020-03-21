@@ -1,14 +1,14 @@
 # Changelog
 
-## TODO
-
-* (potenial issue) cache for current month (to workaround the 7h issue -  when NA cant use API since both servers uses same cache) causes \
-it to rewrite everytime a request happens, unknown if heavy on production.  **Will test on production for one week**
-
 
 ---
 
 ## All notable changes to this publication will be documented in this file.
+
+### 1.3.0 - 21/03/2020
+
+* Added Geoloocation class that checks if you have no cookies - then if you're in NA or EU it will choose your server accordingly \
+if none can be found an own message will tell you to pick manually (e.g. for Asia)
 
 ### 1.2.0 - 17/03/2020
 
