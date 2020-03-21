@@ -6,7 +6,7 @@
 `cp .env.example .env`
 - enable the class autoloader and packages required with composer \
   `composer install --no-dev`
-- for testing built-in webserver can be used  to run the app \
+- for testing built-in webserver can be used to run the app \
   `php -S localhost:8080 -t public/`
 
 ## About the project
