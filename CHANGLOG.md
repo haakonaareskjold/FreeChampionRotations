@@ -9,6 +9,7 @@
 
 * Added Geoloocation class that checks if you have no cookies - then if you're in NA or EU it will choose your server accordingly \
 if none can be found an own message will tell you to pick manually (e.g. for Asia)
+* Added an .env IP only for dev/testing purposes, it is not necessary for production
 
 ### 1.2.0 - 17/03/2020
 

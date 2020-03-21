@@ -23,6 +23,12 @@ class LocationClass
 
     public function fetch()
     {
+        //If IP is localhost- change to the random IP from .env
+        //this if statement is only for users testing
+        if ($this->ip === "127.0.0.1") {
+            $this->ip = getenv('IP');
+        }
+
         $locate = new Client();
         $response = $locate->request('GET', "https://api.ipgeolocationapi.com/geolocate/" . $this->ip);
         $json =  $response->getBody();

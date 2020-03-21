@@ -2,11 +2,11 @@
 
 ### Installation
 
-- Copy the env example to an .env file, then replace the string with your API key \
+- Copy the env example to an .env file, then replace the API value with your API key \
 `cp .env.example .env`
 - enable the class autoloader and packages required with composer \
   `composer install --no-dev`
-- for testing, use built-in webserver to run the app \
+- for testing built-in webserver can be used  to run the app \
   `php -S localhost:8080 -t public/`
 
 ## About the project
