@@ -100,7 +100,7 @@ class Guzzleclass
             // V3 champion rotation API
             $riotapi = new Client([
             'handler' => $this->euStack,
-        ]);
+            ]);
             $response = $riotapi->request(
                 'GET',
                 'https://euw1.api.riotgames.com/lol/platform/v3/champion-rotations?api_key=' . $this->key
@@ -196,7 +196,8 @@ class Guzzleclass
                     $displayImg = self::IMG . $champ["id"] . ".png"; ?>
                     <div class="item">
                         <?php
-                        echo '<img src="' . $displayImg . '">';
+                        print_r("<a href=https://euw.op.gg/champion/{$champ['id']}/statistics/>
+                        <img src={$displayImg}>");
                         ?>
                         <span class="caption"><?php echo $champ['id']; ?></span>
                     </div><?php
@@ -221,7 +222,8 @@ class Guzzleclass
                     $displayImg = self::IMG . $champ["id"] . ".png"; ?>
                     <div class="item">
                         <?php
-                        echo '<img src="' . $displayImg . '">';
+                        print_r("<a href=https://euw.op.gg/champion/{$champ['id']}/statistics/>
+                        <img src={$displayImg}>");
                         ?>
                         <span class="caption"><?php echo $champ['id']; ?></span>
                     </div><?php

@@ -8,6 +8,7 @@
 ### 1.3.1 - 22/03/2020
 
 * Added a guzzle middleware for Riotgames REST API rate limit, max 3 request per second
+* Added href on images to op.gg to the respective champion
 
 ### 1.3.0 - 21/03/2020
 
