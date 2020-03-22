@@ -32,7 +32,7 @@ use App\Classes\LocationClass;
 
 <body>
     <button class="bgButton" onclick="toggle()">Toggle light/dark mode</button>
-    <a href="https://github.com/haakonaareskjold/FreeChampionRotations">
+    <a href="https://github.com/haakonaareskjold/FreeChampionRotations" target="_blank">
     <img src="GitHub-Mark-32px.png" alt="Github logo" class="github"></a>
 
     <?php

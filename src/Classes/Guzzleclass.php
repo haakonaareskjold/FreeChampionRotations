@@ -196,7 +196,7 @@ class Guzzleclass
                     $displayImg = self::IMG . $champ["id"] . ".png"; ?>
                     <div class="item">
                         <?php
-                        print_r("<a href=https://euw.op.gg/champion/{$champ['id']}/statistics/>
+                        print_r("<a href=https://euw.op.gg/champion/{$champ['id']}/statistics/ target=_blank>
                         <img src={$displayImg}></a>");
                         ?>
                         <span class="caption"><?php echo $champ['id']; ?></span>
@@ -222,7 +222,7 @@ class Guzzleclass
                     $displayImg = self::IMG . $champ["id"] . ".png"; ?>
                     <div class="item">
                         <?php
-                        print_r("<a href=https://euw.op.gg/champion/{$champ['id']}/statistics/>
+                        print_r("<a href=https://euw.op.gg/champion/{$champ['id']}/statistics/ target=_blank>
                         <img src={$displayImg}></a>");
                         ?>
                         <span class="caption"><?php echo $champ['id']; ?></span>
