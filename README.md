@@ -17,4 +17,4 @@
 * Includes a countdown timer for both servers
 * Has a toggle for dark/light mode which uses cookies
 * Uses cookies to remember which location you have chosen
-* images has link to their op.gg guides|
+* images has link to their op.gg guides
