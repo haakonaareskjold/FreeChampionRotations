@@ -80,9 +80,9 @@ class Guzzleclass
                 $code == 400 || $code == 401 || $code == 403 ||
                 $code == 404 || $code == 405 || $code == 415 || $code == 429
             ) {
-                die("<span class=\"httpError\">Client error [4xx] has appeared, please try again later.</span>");
+                die("<span class=\"httpError\">A client error has occured, please try again later.</span>");
             } elseif ($code == 500 || $code == 502 || $code == 503 || $code == 504) {
-                die("<span class=\"httpError\">Server error [5xx] has appeared, please try again later.</span>");
+                die("<span class=\"httpError\">A server error has occured, please try again later.</span>");
             }
         }
     }
