@@ -5,6 +5,10 @@
 
 ## All notable changes to this publication will be documented in this file.
 
+### 1.3.1 - 22/03/2020
+
+* Added a guzzle middleware for Riotgames REST API rate limit, max 3 request per second
+
 ### 1.3.0 - 21/03/2020
 
 * Added Geoloocation class that checks if you have no cookies - then if you're in NA or EU it will choose your server accordingly

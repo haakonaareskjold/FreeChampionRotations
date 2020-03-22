@@ -6,10 +6,14 @@ use DateTime;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\ServerException;
+use GuzzleHttp\HandlerStack;
+use Spatie\GuzzleRateLimiterMiddleware\RateLimiterMiddleware;
 
 class Guzzleclass
 {
     private $key;
+    private $naStack;
+    private $euStack;
     private $id;
     private $content;
     private $guzzle_json;
@@ -25,9 +29,14 @@ class Guzzleclass
             die("<span class=\"httpError\">Please put your actual API key in the .env file.</span>");
         }
 
-        $client = new Client();
+        $this->naStack = HandlerStack::create();
+        $this->naStack->push(RateLimiterMiddleware::perSecond(3));
+        $client = new Client([
+            'handler' => $this->naStack,
+        ]);
+
         try {
-            $reponse = $client->request(
+            $client->request(
                 'GET',
                 'https://na1.api.riotgames.com/lol/platform/v3/champion-rotations?api_key=' . $this->key
             );
@@ -52,9 +61,15 @@ class Guzzleclass
             die("<span class=\"httpError\">Please put your actual API key in the .env file.</span>");
         }
 
-        $client = new Client();
+        
+        $this->euStack = HandlerStack::create();
+        $this->euStack->push(RateLimiterMiddleware::perSecond(3));
+        $client = new Client([
+            'handler' => $this->euStack,
+        ]);
+
         try {
-            $reponse = $client->request(
+            $client->request(
                 'GET',
                 'https://euw1.api.riotgames.com/lol/platform/v3/champion-rotations?api_key=' . $this->key
             );
@@ -83,13 +98,17 @@ class Guzzleclass
 
         if (isset($_POST['EUW']) || isset($_COOKIE['EUW'])) {
             // V3 champion rotation API
-            $riotapi = new Client();
+            $riotapi = new Client([
+            'handler' => $this->euStack,
+        ]);
             $response = $riotapi->request(
                 'GET',
                 'https://euw1.api.riotgames.com/lol/platform/v3/champion-rotations?api_key=' . $this->key
             );
         } elseif (isset($_POST['NA']) || isset($_COOKIE['NA'])) {
-            $riotapi = new Client();
+            $riotapi = new Client([
+                'handler' => $this->naStack,
+            ]);
             $response = $riotapi->request(
                 'GET',
                 'https://na1.api.riotgames.com/lol/platform/v3/champion-rotations?api_key=' . $this->key
