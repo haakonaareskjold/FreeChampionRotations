@@ -197,7 +197,7 @@ class Guzzleclass
                     <div class="item">
                         <?php
                         print_r("<a href=https://euw.op.gg/champion/{$champ['id']}/statistics/>
-                        <img src={$displayImg}>");
+                        <img src={$displayImg}></a>");
                         ?>
                         <span class="caption"><?php echo $champ['id']; ?></span>
                     </div><?php
@@ -223,7 +223,7 @@ class Guzzleclass
                     <div class="item">
                         <?php
                         print_r("<a href=https://euw.op.gg/champion/{$champ['id']}/statistics/>
-                        <img src={$displayImg}>");
+                        <img src={$displayImg}></a>");
                         ?>
                         <span class="caption"><?php echo $champ['id']; ?></span>
                     </div><?php
