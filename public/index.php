@@ -69,7 +69,13 @@ use App\Classes\LocationClass;
         ?>
         <h2>Free champions available on <span class="servername"><?php $guzzle->serverCheck();
         ?>
-            </span> server in week <?php echo date('W');
+            </span> server in week 
+            <?php
+            if (isset($_COOKIE['EUW'])) {
+             echo date('W', strtotime("- 1 day - 2 hour"));
+            } elseif (isset($_COOKIE['NA'])) {
+                echo date('W', strtotime("- 1 day - 8 hour"));
+             }
     }
     ?>
         </h2>

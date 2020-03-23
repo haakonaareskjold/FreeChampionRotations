@@ -5,6 +5,10 @@
 
 ## All notable changes to this publication will be documented in this file.
 
+### 1.3.2 - 23/03/2020
+
+* Fixed an error that displayed the wrong time for EUW and NA on the servercheck, correctly fixed to W - 1 day -2h for EUW and additional -6h for NA
+
 ### 1.3.1 - 22/03/2020
 
 * Added a guzzle middleware for Riotgames REST API rate limit, max 3 request per second
