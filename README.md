@@ -8,6 +8,7 @@
   `composer install --no-dev`
 - for testing built-in webserver can be used to run the app \
   `php -S localhost:8080 -t public/`
+   - Might require to adjust the datetime according to servers timezone, is currently set to UTC +1
 
 ## About the project
 
