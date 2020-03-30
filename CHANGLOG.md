@@ -5,6 +5,10 @@
 
 ## All notable changes to this publication will be documented in this file.
 
+### 1.4 - 30/03/2020
+
+* Added templates for Twig in case of Client/Server errors, foundation for future development- make template for the most common API errors possible
+
 ### 1.3.2 - 23/03/2020
 
 * Fixed an error that displayed the wrong time for EUW and NA on the servercheck, correctly fixed to W - 1 day -2h for EUW and additional -6h for NA

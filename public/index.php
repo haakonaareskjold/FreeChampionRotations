@@ -50,7 +50,6 @@ use App\Classes\LocationClass;
     $location->fetch();
     $location->pickServer();
     $location->geoLocation();
-
     ?>
 
     <h1>Free Champion Rotations</h1>

@@ -8,10 +8,14 @@ use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\ServerException;
 use GuzzleHttp\HandlerStack;
 use Spatie\GuzzleRateLimiterMiddleware\RateLimiterMiddleware;
+use Twig\Environment;
+use Twig\Loader\FilesystemLoader;
+
 
 class Guzzleclass
 {
     private $key;
+    private $twig;
     private $naStack;
     private $euStack;
     private $id;
@@ -29,6 +33,11 @@ class Guzzleclass
             die("<span class=\"httpError\">Please put your actual API key in the .env file.</span>");
         }
 
+        //Twig
+        $loader = new FilesystemLoader('../templates');
+        $this->twig = new Environment($loader);
+
+        //Guzzle middleware RateLimiter
         $this->naStack = HandlerStack::create();
         $this->naStack->push(RateLimiterMiddleware::perSecond(3));
         $client = new Client([
@@ -47,9 +56,10 @@ class Guzzleclass
                 $code == 400 || $code == 401 || $code == 403 ||
                 $code == 404 || $code == 405 || $code == 415 || $code == 429
             ) {
-                die("<span class=\"httpError\">A client error has occured, please try again later.</span>");
+
+                die ($this->twig->render('baseClientError.html'));
             } elseif ($code == 500 || $code == 502 || $code == 503 || $code == 504) {
-                die("<span class=\"httpError\">A server error has occured, please try again later.</span>");
+                die ($this->twig->render('baseServerError.html'));
             }
         }
     }
@@ -80,9 +90,9 @@ class Guzzleclass
                 $code == 400 || $code == 401 || $code == 403 ||
                 $code == 404 || $code == 405 || $code == 415 || $code == 429
             ) {
-                die("<span class=\"httpError\">A client error has occured, please try again later.</span>");
+                die ($this->twig->render('baseClientError.html'));
             } elseif ($code == 500 || $code == 502 || $code == 503 || $code == 504) {
-                die("<span class=\"httpError\">A server error has occured, please try again later.</span>");
+                die ($this->twig->render('baseServerError.html'));
             }
         }
     }
