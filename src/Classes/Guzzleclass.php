@@ -11,7 +11,6 @@ use Spatie\GuzzleRateLimiterMiddleware\RateLimiterMiddleware;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 
-
 class Guzzleclass
 {
     private $key;
@@ -56,10 +55,9 @@ class Guzzleclass
                 $code == 400 || $code == 401 || $code == 403 ||
                 $code == 404 || $code == 405 || $code == 415 || $code == 429
             ) {
-
-                die ($this->twig->render('baseClientError.html'));
+                die($this->twig->render('baseClientError.html'));
             } elseif ($code == 500 || $code == 502 || $code == 503 || $code == 504) {
-                die ($this->twig->render('baseServerError.html'));
+                die($this->twig->render('baseServerError.html'));
             }
         }
     }
@@ -90,9 +88,9 @@ class Guzzleclass
                 $code == 400 || $code == 401 || $code == 403 ||
                 $code == 404 || $code == 405 || $code == 415 || $code == 429
             ) {
-                die ($this->twig->render('baseClientError.html'));
+                die($this->twig->render('baseClientError.html'));
             } elseif ($code == 500 || $code == 502 || $code == 503 || $code == 504) {
-                die ($this->twig->render('baseServerError.html'));
+                die($this->twig->render('baseServerError.html'));
             }
         }
     }
@@ -144,11 +142,9 @@ class Guzzleclass
         $ddragon_json = $res->getBody();
         $this->content = json_decode($ddragon_json, true);
 
-        //experimental -
-        //supposed to check if its within the given time and then will put id to use latest cache instead of API
         if (isset($_POST['NA']) || isset($_COOKIE['NA'])) {
             $currentTime = new DateTime();
-            $startTime = new DateTime('Tue 01:00');
+            $startTime = new DateTime('Tue 02:00');
             $endTime = new DateTime('Tue 08:00');
 
             if (
@@ -169,7 +165,7 @@ class Guzzleclass
     public function cacheChampions()
     {
         $currentTime = new DateTime();
-        $startTime = new DateTime('Tue 01:00');
+        $startTime = new DateTime('Tue 02:00');
         $endTime = new DateTime('Tue 08:00');
 
         if (

@@ -5,6 +5,10 @@
 
 ## All notable changes to this publication will be documented in this file.
 
+### 1.4.1 - 31/03/2020
+
+* Added php built-in function for setting timezone to Europe/Berlin, DST should follow accordingly
+
 ### 1.4 - 30/03/2020
 
 * Added templates for Twig in case of Client/Server errors, foundation for future development- make template for the most common API errors possible
