@@ -145,7 +145,7 @@ class Guzzleclass
         if (isset($_POST['NA']) || isset($_COOKIE['NA'])) {
             $currentTime = new DateTime();
             $startTime = new DateTime('Tue 02:00');
-            $endTime = new DateTime('Tue 09:00'); //replace with 08:00 if no DST
+            $endTime = new DateTime('Tue 10:00'); //replace with 09:00 if no DST
 
             if (
                 $currentTime->format('D H:i:s') >= $startTime->format('D H:i:s') &&
@@ -166,7 +166,7 @@ class Guzzleclass
     {
         $currentTime = new DateTime();
         $startTime = new DateTime('Tue 02:00');
-        $endTime = new DateTime('Tue 09:00'); //replace with 08:00 if no DST
+        $endTime = new DateTime('Tue 10:00'); //replace with 09:00 if no DST
 
         if (
             $currentTime->format('D H:i:s') >= $startTime->format('D H:i:s')
