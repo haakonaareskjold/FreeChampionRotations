@@ -8,6 +8,7 @@
 ### 1.4.1 - 31/03/2020
 
 * Added php built-in function for setting timezone to Europe/Berlin, DST should follow accordingly
+* Added comments with what variables that should be changed if no DST
 
 ### 1.4 - 30/03/2020
 

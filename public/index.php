@@ -73,7 +73,9 @@ use App\Classes\LocationClass;
             if (isset($_COOKIE['EUW'])) {
              echo date('W', strtotime("- 1 day - 2 hour"));
             } elseif (isset($_COOKIE['NA'])) {
-                echo date('W', strtotime("- 1 day - 8 hour"));
+                echo date('W', strtotime("- 1 day - 9 hour"));
+                // echo date('W', strtotime("- 1 day - 8 hour"));
+                //replace with this if no DST
              }
     }
     ?>
