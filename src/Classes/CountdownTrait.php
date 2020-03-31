@@ -91,8 +91,8 @@ trait CountdownTrait
                     var nowDate = new Date();
                     var dy = 2; //Sunday through Saturday, 0 to 6
                     var countertime = new Date(
-                        nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 10, 0, 0);
-                    //replace 9 with 10 if no DST
+                        nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 11, 0, 0);
+                    //replace 10 with 11 if no DST
 
                     var curtime = nowDate.getTime(); //current time
                     var atime = countertime.getTime(); //countdown time
