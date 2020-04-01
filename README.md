@@ -2,7 +2,7 @@
 
 ### Installation
 
-- Copy the env example to an .env file, then replace the API value with your API key \
+- Copy the env example to an .env file, then fill in/ replace the values required \
 `cp .env.example .env`
 - enable the class autoloader and packages required with composer \
   `composer install --no-dev`

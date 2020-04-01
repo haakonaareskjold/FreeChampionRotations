@@ -22,8 +22,8 @@ class Guzzleclass
     private $guzzle_json;
     private $secondID;
     private $thirdID;
-    private const IMG = "https://ddragon.leagueoflegends.com/cdn/10.4.1/img/champion/"; // patch 10.4.1
-    private const CHAMPIONS = "http://ddragon.leagueoflegends.com/cdn/10.4.1/data/en_US/champion.json"; // patch 10.4.1
+    private $img;
+    private $champions;
 
     public function verifyNA()
     {
@@ -137,8 +137,9 @@ class Guzzleclass
         fclose($fp);
 
         // ddragon JSON
+        $this->champions = "http://ddragon.leagueoflegends.com/cdn/" . getenv('PATCH') . "/data/en_US/champion.json";
         $ddragon = new Client();
-        $res = $ddragon->get(self::CHAMPIONS);
+        $res = $ddragon->get($this->champions);
         $ddragon_json = $res->getBody();
         $this->content = json_decode($ddragon_json, true);
 
@@ -196,10 +197,11 @@ class Guzzleclass
 
     public function currentWeek()
     {
+        $this->img = "https://ddragon.leagueoflegends.com/cdn/" . getenv('PATCH') . "/img/champion/";
         foreach ($this->content['data'] as $champ) {
             foreach ($this->id as $freeid) {
                 if ($champ["key"] == $freeid) {
-                    $displayImg = self::IMG . $champ["id"] . ".png"; ?>
+                    $displayImg = $this->img . $champ["id"] . ".png"; ?>
                     <div class="item">
                         <?php
                         print_r("<a href=https://euw.op.gg/champion/{$champ['id']}/statistics/ target=_blank>
@@ -225,7 +227,7 @@ class Guzzleclass
         foreach ($this->content['data'] as $champ) {
             foreach ($finalresult as $freeid) {
                 if ($champ["key"] == $freeid) {
-                    $displayImg = self::IMG . $champ["id"] . ".png"; ?>
+                    $displayImg = $this->img . $champ["id"] . ".png"; ?>
                     <div class="item">
                         <?php
                         print_r("<a href=https://euw.op.gg/champion/{$champ['id']}/statistics/ target=_blank>

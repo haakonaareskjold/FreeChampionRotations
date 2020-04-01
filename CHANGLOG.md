@@ -5,6 +5,10 @@
 
 ## All notable changes to this publication will be documented in this file.
 
+### 1.4.2 - 01/04/2020
+
+* Refactored class code, removed constants and replaced with env variables for current patch
+
 ### 1.4.1 - 31/03/2020
 
 * Added php built-in function for setting timezone to Europe/Berlin, DST should follow accordingly
