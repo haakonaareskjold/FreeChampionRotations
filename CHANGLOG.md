@@ -5,6 +5,10 @@
 
 ## All notable changes to this publication will be documented in this file.
 
+### 1.4.3 - 01/04/2020
+
+* Made a script that automatically fetches the most recent available DDragon patch and puts it in the phpdotenv
+
 ### 1.4.2 - 01/04/2020
 
 * Refactored class code, removed constants and replaced with env variables for current patch
