@@ -66,7 +66,7 @@ use App\Classes\LocationClass;
         $guzzle->fetchID();
         $guzzle->cacheChampions();
         ?>
-        <h2>Free champions available on <span class="servername"><?php $guzzle->serverCheck();
+    <h2>Free champions available in <span class="servername">ARAM</span> or <span class="servername">Normal games</span> on <span class="servername"><?php $guzzle->serverCheck();
         ?>
             </span> server in week 
             <?php
@@ -84,7 +84,7 @@ use App\Classes\LocationClass;
             <?php
             if (isset($_COOKIE["EUW"]) || isset($_COOKIE["NA"])) {
                 $guzzle->currentWeek();
-                ?> <h2> Additional champions available in <span class="servername"> ARAM</span> only: </h2>
+                ?> <h2> Champions always available in <span class="servername"> ARAM</span>: </h2>
                 <?php
                 $guzzle->aramChampions();
             }

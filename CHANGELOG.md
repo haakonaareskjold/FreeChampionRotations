@@ -5,6 +5,12 @@
 
 ## All notable changes to this publication will be documented in this file.
 
+### 1.5 - 02/04/2020
+
+* BIG CHANGE: Riot changed the format for ARAM, new is 65 set champions + current week from API. I refactored the
+aramchampions method to display these 65 (removing duplicates). This will also make the cache not fully needed, only
+for displaying the currentweek when the time difference between EU and NA happens.
+
 ### 1.4.3 - 01/04/2020
 
 * Made a script that automatically fetches the most recent available DDragon patch and puts it in the phpdotenv

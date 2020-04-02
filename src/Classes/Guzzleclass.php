@@ -19,6 +19,7 @@ class Guzzleclass
     private $euStack;
     private $id;
     private $content;
+    private $result;
     private $guzzle_json;
     private $secondID;
     private $thirdID;
@@ -217,23 +218,28 @@ class Guzzleclass
 
     public function aramChampions()
     {
-        // removing duplicates, checking for diff between the ones fetched from the API and the ones merged
-        $result = array_merge($this->secondID, $this->thirdID);
-        $aram = array_unique($result);
-        $finalresult = array_diff($aram, $this->id);
-        
+        $json = dirname(__FILE__) . "/../alwaysaram.json";
+        if (file_exists($json)) {
+            $json_array = json_decode(file_get_contents($json), true);
+            $this->result = $json_array['always'];
+        }
 
-        //echo the data/img out
+        // removing duplicates, checking for diff between the ones fetched from the API and the ones merged
+        $aramonly = array_merge($this->id, $this->result);
+        $aram = array_unique($aramonly);
+        $finalresult = array_diff($aram, $this->id);
+
+        //prints champion name/img
         foreach ($this->content['data'] as $champ) {
             foreach ($finalresult as $freeid) {
                 if ($champ["key"] == $freeid) {
                     $displayImg = $this->img . $champ["id"] . ".png"; ?>
                     <div class="item">
-                        <?php
-                        print_r("<a href=https://euw.op.gg/champion/{$champ['id']}/statistics/ target=_blank>
+                    <?php
+                    print_r("<a href=https://euw.op.gg/champion/{$champ['id']}/statistics/ target=_blank>
                         <img src={$displayImg}></a>");
-                        ?>
-                        <span class="caption"><?php echo $champ['id']; ?></span>
+                    ?>
+                    <span class="caption"><?php echo $champ['id']; ?></span>
                     </div><?php
                 }
             }
