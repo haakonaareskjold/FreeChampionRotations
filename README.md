@@ -8,6 +8,13 @@
   `composer install --no-dev`
 - for testing built-in webserver can be used to run the app \
   `php -S localhost:8080 -t public/`
+  
+## Important changes - 31/03/2020
+- Riot changed how ARAM rotations works as of 31/03/2020, check the "new" branch to see what's on
+the live site, legacy code(master branch) is still available, [Click here](https://plebs.website)
+to see it.
+- major difference between OLD and NEW is that now it displays 65 champions that are always available in ARAM,
+plus the weekly rotation from before. Which makes the previous two rotations that are cached obsolete.
 
 ## About the project
 
