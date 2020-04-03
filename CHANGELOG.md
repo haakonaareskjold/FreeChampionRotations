@@ -5,6 +5,11 @@
 
 ## All notable changes to this publication will be documented in this file.
 
+### 1.4.4 -  03/04/2020
+
+* Fixed typo in guzzleclass making champions display the ID from DDragon JSON instead of the name,
+the ID is still intended for the op.gg img link - where name would not work.
+
 ### 1.4.3 - 01/04/2020
 
 * Made a script that automatically fetches the most recent available DDragon patch and puts it in the phpdotenv
