@@ -5,6 +5,11 @@
 
 ## All notable changes to this publication will be documented in this file.
 
+### 1.5.1 -  03/04/2020
+
+* Fixed typo in guzzleclass making champions display the ID from DDragon JSON instead of the name,
+the ID is still intended for the op.gg img link - where name would not work.
+
 ### 1.5 - 02/04/2020
 
 * BIG CHANGE: Riot changed the format for ARAM, new is 65 set champions + current week from API. I refactored the
