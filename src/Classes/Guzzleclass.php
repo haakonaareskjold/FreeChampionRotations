@@ -56,9 +56,19 @@ class Guzzleclass
                 $code == 400 || $code == 401 || $code == 403 ||
                 $code == 404 || $code == 405 || $code == 415 || $code == 429
             ) {
-                die($this->twig->render('baseClientError.html'));
+                die($this->twig->render('error.html.twig',
+                    [
+                            'error' => 'Client',
+                            'code' => $code,
+                            'server' => 'NA'
+                    ]));
             } elseif ($code == 500 || $code == 502 || $code == 503 || $code == 504) {
-                die($this->twig->render('baseServerError.html'));
+                die($this->twig->render('error.html.twig',
+                    [
+                        'error' => 'Server',
+                        'code' => $code,
+                        'server' => 'NA'
+                    ]));
             }
         }
     }
@@ -70,7 +80,6 @@ class Guzzleclass
             die("<span class=\"httpError\">Please put your actual API key in the .env file.</span>");
         }
 
-        
         $this->euStack = HandlerStack::create();
         $this->euStack->push(RateLimiterMiddleware::perSecond(3));
         $client = new Client([
@@ -89,9 +98,19 @@ class Guzzleclass
                 $code == 400 || $code == 401 || $code == 403 ||
                 $code == 404 || $code == 405 || $code == 415 || $code == 429
             ) {
-                die($this->twig->render('baseClientError.html'));
+                die($this->twig->render('error.html.twig',
+                    [
+                        'error' => 'Client',
+                        'code' => $code,
+                        'server' => 'EUW'
+                    ]));
             } elseif ($code == 500 || $code == 502 || $code == 503 || $code == 504) {
-                die($this->twig->render('baseServerError.html'));
+                die($this->twig->render('error.html.twig',
+                    [
+                        'error' => 'Server',
+                        'code' => $code,
+                        'server' => 'EUW'
+                    ]));
             }
         }
     }

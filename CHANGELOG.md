@@ -5,6 +5,10 @@
 
 ## All notable changes to this publication will be documented in this file.
 
+### 1.5.2 - 04/04/2020
+
+* Updated Twig template to display actual errors, tested with guzzle mocking
+
 ### 1.5.1 -  03/04/2020
 
 * Fixed typo in guzzleclass making champions display the ID from DDragon JSON instead of the name,
