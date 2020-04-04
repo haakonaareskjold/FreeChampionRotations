@@ -5,17 +5,11 @@ namespace App\Classes;
 use DateTime;
 use GuzzleHttp\Client;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\StreamInterface;
 use Twig\Environment;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\ServerException;
 use Twig\Loader\FilesystemLoader;
-
-//mock
-use GuzzleHttp\Handler\MockHandler;
-use GuzzleHttp\HandlerStack;
-use GuzzleHttp\Psr7\Response;
-use GuzzleHttp\Psr7\Request;
-use GuzzleHttp\Exception\RequestException;
 
 
 class Guzzleclass
@@ -23,9 +17,7 @@ class Guzzleclass
 
     private $id;
     private $content;
-    private $result;
     private $img;
-    private $champions;
 
     /**
      * @var Environment
@@ -44,13 +36,13 @@ class Guzzleclass
      */
     private ResponseInterface $responseEUW;
     /**
-     * @var \Psr\Http\Message\StreamInterface
+     * @var StreamInterface
      */
-    private \Psr\Http\Message\StreamInterface $euwBody;
+    private StreamInterface $euwBody;
     /**
-     * @var \Psr\Http\Message\StreamInterface
+     * @var StreamInterface
      */
-    private \Psr\Http\Message\StreamInterface $naBody;
+    private StreamInterface $naBody;
 
 
     public function testAPI()
@@ -70,8 +62,7 @@ class Guzzleclass
         $loader = new FilesystemLoader('../templates');
         $this->twig = new Environment($loader);
 
-        $this->requestEUW();
-        $this->requestNA();
+        //loading timers for 4min to change json with REST API
         $this->euTimer();
         $this->naTimer();
     }
@@ -193,9 +184,9 @@ class Guzzleclass
         }
 
         // Data Dragon JSON
-        $this->champions = "http://ddragon.leagueoflegends.com/cdn/" . getenv('PATCH') . "/data/en_US/champion.json";
+        $champions = "http://ddragon.leagueoflegends.com/cdn/" . getenv('PATCH') . "/data/en_US/champion.json";
         $ddragon = new Client();
-        $res = $ddragon->get($this->champions);
+        $res = $ddragon->get($champions);
         $ddragon_json = $res->getBody();
         $this->content = json_decode($ddragon_json, true);
     }
@@ -224,13 +215,11 @@ class Guzzleclass
     public function aramChampions()
     {
         $json = dirname(__FILE__) . "/../alwaysaram.json";
-        if (file_exists($json)) {
             $json_array = json_decode(file_get_contents($json), true);
-            $this->result = $json_array['always'];
-        }
+            $result = $json_array['always'];
 
         // removing duplicates, checking for diff between the ones fetched from the API and the ones merged
-        $aramonly = array_merge($this->id, $this->result);
+        $aramonly = array_merge($this->id, $result);
         $aram = array_unique($aramonly);
         $finalresult = array_diff($aram, $this->id);
 
