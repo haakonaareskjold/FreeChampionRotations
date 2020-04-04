@@ -14,6 +14,7 @@ require_once __DIR__ . "/../src/bootstrap.php";
 use App\Classes\CountholderClass;
 use App\Classes\Guzzleclass;
 use App\Classes\LocationClass;
+use App\Classes\RequestClass;
 
 ?>
 <!DOCTYPE html>
@@ -36,13 +37,10 @@ use App\Classes\LocationClass;
     <img src="GitHub-Mark-32px.png" alt="Github logo" class="github"></a>
 
     <?php
-    /**
-     * check if guzzle can fetch riot API with ENV key
-     * then if both NA and EUW has connection without errors
-     */
+    // test API
     $verify = new Guzzleclass();
-    $verify->verifyNA();
-    $verify->verifyEUW();
+    $verify->timerTestAPI();
+
     
     //geolocation
     $location = new LocationClass();
@@ -64,7 +62,7 @@ use App\Classes\LocationClass;
     $guzzle = new Guzzleclass();
     if (isset($_COOKIE['EUW']) || isset($_COOKIE["NA"])) {
         $guzzle->fetchID();
-        $guzzle->cacheChampions();
+       // $guzzle->cacheChampions();
         ?>
     <h2>Free champions available in <span class="servername">ARAM</span> or <span class="servername">Normal games</span> on <span class="servername"><?php $guzzle->serverCheck();
         ?>

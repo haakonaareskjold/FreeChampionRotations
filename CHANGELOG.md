@@ -5,6 +5,11 @@
 
 ## All notable changes to this publication will be documented in this file.
 
+### 1.6 - 04/04/2020
+
+* Refactored code so API usage to only load in once a week to prevent rate limiting
+* Still needs testing to see how behaviour is under rotation, branching to **experimental**
+
 ### 1.5.2 - 04/04/2020
 
 * Updated Twig template to display actual errors, tested with guzzle mocking
