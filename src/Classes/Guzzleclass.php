@@ -10,6 +10,13 @@ use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\ServerException;
 use Twig\Loader\FilesystemLoader;
 
+//mock
+use GuzzleHttp\Handler\MockHandler;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Psr7\Response;
+use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Exception\RequestException;
+
 
 class Guzzleclass
 {
@@ -17,8 +24,6 @@ class Guzzleclass
     private $id;
     private $content;
     private $result;
-    private $secondID;
-    private $thirdID;
     private $img;
     private $champions;
 
@@ -38,20 +43,17 @@ class Guzzleclass
      * @var ResponseInterface
      */
     private ResponseInterface $responseEUW;
+    /**
+     * @var \Psr\Http\Message\StreamInterface
+     */
+    private \Psr\Http\Message\StreamInterface $euwBody;
+    /**
+     * @var \Psr\Http\Message\StreamInterface
+     */
+    private \Psr\Http\Message\StreamInterface $naBody;
 
-    public function timerTestAPI()
-    {
-        $currentTime = new DateTime();
-        $startTime = new DateTime('Tue 01:58');
-        $endTime = new DateTime('Tue 11:02');
 
-        if ($currentTime->format('D H:i:s') >= $startTime->format('D H:i:s')
-            && $currentTime->format('D H:i:s') <= $endTime->format('D H:i:s')) {
-            $this->testAPI();
-        }
-    }
-
-    private function testAPI()
+    public function testAPI()
     {
         /**
          * check if guzzle can fetch riot API with ENV key
@@ -68,8 +70,34 @@ class Guzzleclass
         $loader = new FilesystemLoader('../templates');
         $this->twig = new Environment($loader);
 
-        $this->requestNA();
         $this->requestEUW();
+        $this->requestNA();
+        $this->euTimer();
+        $this->naTimer();
+    }
+
+    private function euTimer()
+    {
+        $currentTime = new DateTime();
+        $startTime = new DateTime('Tue 01:58');
+        $endTime = new DateTime('Tue 02:02');
+
+        if ($currentTime->format('D H:i:s') >= $startTime->format('D H:i:s')
+            && $currentTime->format('D H:i:s') <= $endTime->format('D H:i:s')) {
+            $this->requestEUW();
+        }
+    }
+
+    private function natimer()
+    {
+        $currentTime = new DateTime();
+        $startTime = new DateTime('Tue 10:58');
+        $endTime = new DateTime('Tue 11:02');
+
+        if ($currentTime->format('D H:i:s') >= $startTime->format('D H:i:s')
+            && $currentTime->format('D H:i:s') <= $endTime->format('D H:i:s')) {
+            $this->requestNA();
+        }
     }
 
     private function requestNA()
@@ -102,18 +130,18 @@ class Guzzleclass
                         'server' => 'NA'
                     ]));
             }
-        } finally {
-            $json = $this->responseNA->getBody();
-            $array = json_decode($json, true);
-            $this->id = $array['freeChampionIds'];
-            $cache = fopen(dirname(__FILE__) . "/../Cache/rotationNA.json", "w+");
-            fwrite($cache, $json);;
-            fclose($cache);
         }
-    }
+        if ($this->responseNA->getStatusCode() == 200) {
+            $this->naBody = $this->responseNA->getBody();
+        }
+        $cache = fopen(dirname(__FILE__) . "/../Cache/rotationNA.json", "w");
+        fwrite($cache, $this->naBody);;
+        fclose($cache);
+        }
 
     private function requestEUW()
     {
+
 
         try {
             $client = new Client();
@@ -128,14 +156,14 @@ class Guzzleclass
                 $code == 400 || $code == 401 || $code == 403 ||
                 $code == 404 || $code == 405 || $code == 415 || $code == 429
             ) {
-                return ($this->twig->render('error.html.twig',
+                die ($this->twig->render('error.html.twig',
                     [
                         'error' => 'Client',
                         'code' => $code,
                         'server' => 'EUW'
                     ]));
             } elseif ($code == 500 || $code == 502 || $code == 503 || $code == 504) {
-                return ($this->twig->render('error.html.twig',
+                die ($this->twig->render('error.html.twig',
                     [
                         'error' => 'Server',
                         'code' => $code,
@@ -143,12 +171,13 @@ class Guzzleclass
                     ]));
             }
         }
-        $json = $this->responseEUW->getBody();
-        $cache = fopen(dirname(__FILE__) . "/../Cache/rotationEUW.json", "w+");
-        fwrite($cache, $json);;
+        if ($this->responseEUW->getStatusCode() == 200) {
+            $this->euwBody = $this->responseEUW->getBody();
+    }
+        $cache = fopen(dirname(__FILE__) . "/../Cache/rotationEUW.json", "w");
+        fwrite($cache, $this->euwBody);;
         fclose($cache);
     }
-
 
 
     public function fetchID()
@@ -162,50 +191,14 @@ class Guzzleclass
             $array = json_decode(file_get_contents($cacheNA), true);
             $this->id = $array['freeChampionIds'];
         }
-        
 
-
-
-        // ddragon JSON
+        // Data Dragon JSON
         $this->champions = "http://ddragon.leagueoflegends.com/cdn/" . getenv('PATCH') . "/data/en_US/champion.json";
         $ddragon = new Client();
         $res = $ddragon->get($this->champions);
         $ddragon_json = $res->getBody();
         $this->content = json_decode($ddragon_json, true);
-
-
     }
-
-    public function cacheChampions()
-    {
-        $currentTime = new DateTime();
-        $startTime = new DateTime('Tue 02:00');
-        $endTime = new DateTime('Tue 11:00'); //replace with 10:00 if no DST
-
-        if (
-            $currentTime->format('D H:i:s') >= $startTime->format('D H:i:s')
-            && $currentTime->format('D H:i:s') <= $endTime->format('D H:i:s') && isset($_COOKIE['NA'])
-        ) {
-            $currentWeek = date('W', strtotime("- 1 day - 2 hour"));
-            $previousWeek = $currentWeek - 2;
-            $previousWeekTwo = $currentWeek - 3;
-        } else {
-            $currentWeek = date('W', strtotime("- 1 day - 2 hour"));
-            $previousWeek = $currentWeek - 1;
-            $previousWeekTwo = $currentWeek - 2;
-        }
-        $file1 = dirname(__FILE__) . "/../Cache/week-{$previousWeek}.json";
-        $file2 = dirname(__FILE__) . "/../Cache/week-{$previousWeekTwo}.json";
-
-        if (file_exists($file1) && file_exists($file2)) {
-            $json_array = json_decode(file_get_contents($file1), true);
-            $this->secondID = $json_array['freeChampionIds'];
-
-            $json_array_third = json_decode(file_get_contents($file2), true);
-            $this->thirdID = $json_array_third['freeChampionIds'];
-        }
-    }
-
 
 
     public function currentWeek()
@@ -267,15 +260,4 @@ class Guzzleclass
         }
     }
 
-    public function clearCache()
-    {
-        $files = glob(dirname(__FILE__) . '/../Cache/*.json');
-        if (count($files) > 5) {
-            foreach ($files as $deletefiles) {
-                if (time() - filectime($deletefiles) > 10 * 24 * 60 * 60) {
-                    unlink($deletefiles);
-                }
-            }
-        }
-    }
 }
