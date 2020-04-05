@@ -5,10 +5,25 @@
 
 ## All notable changes to this publication will be documented in this file.
 
-### 1.4.4 -  03/04/2020
+### 1.6 - 04/04/2020
+
+* Refactored code so API usage to only load in once a week to prevent rate limiting
+* Still needs testing to see how behaviour is under rotation, branching to **experimental**
+
+### 1.5.2 - 04/04/2020
+
+* Updated Twig template to display actual errors, tested with guzzle mocking
+
+### 1.5.1 -  03/04/2020
 
 * Fixed typo in guzzleclass making champions display the ID from DDragon JSON instead of the name,
 the ID is still intended for the op.gg img link - where name would not work.
+
+### 1.5 - 02/04/2020
+
+* BIG CHANGE: Riot changed the format for ARAM, new is 65 set champions + current week from API. I refactored the
+aramchampions method to display these 65 (removing duplicates). This will also make the cache not fully needed, only
+for displaying the currentweek when the time difference between EU and NA happens.
 
 ### 1.4.3 - 01/04/2020
 

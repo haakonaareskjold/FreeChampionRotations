@@ -14,6 +14,7 @@ require_once __DIR__ . "/../src/bootstrap.php";
 use App\Classes\CountholderClass;
 use App\Classes\Guzzleclass;
 use App\Classes\LocationClass;
+use App\Classes\RequestClass;
 
 ?>
 <!DOCTYPE html>
@@ -36,13 +37,9 @@ use App\Classes\LocationClass;
     <img src="GitHub-Mark-32px.png" alt="Github logo" class="github"></a>
 
     <?php
-    /**
-     * check if guzzle can fetch riot API with ENV key
-     * then if both NA and EUW has connection without errors
-     */
+    // test API
     $verify = new Guzzleclass();
-    $verify->verifyNA();
-    $verify->verifyEUW();
+    $verify->testAPI();
     
     //geolocation
     $location = new LocationClass();
@@ -64,19 +61,17 @@ use App\Classes\LocationClass;
     $guzzle = new Guzzleclass();
     if (isset($_COOKIE['EUW']) || isset($_COOKIE["NA"])) {
         $guzzle->fetchID();
-        $guzzle->cacheChampions();
         ?>
-        <h2>Free champions available on <span class="servername"><?php $guzzle->serverCheck();
-        ?>
+    <h2>Free champions available in <span class="servername">ARAM</span> or <span class="servername">
+            Normal games</span> on <span class="servername"><?php $guzzle->serverCheck();
+            ?>
             </span> server in week 
             <?php
             if (isset($_COOKIE['EUW'])) {
-             echo date('W', strtotime("- 1 day - 2 hour"));
+                echo date('W', strtotime("- 1 day - 2 hour"));
             } elseif (isset($_COOKIE['NA'])) {
                 echo date('W', strtotime("- 1 day - 11 hour"));
-                // echo date('W', strtotime("- 1 day - 8 hour"));
-                //replace with this if no DST
-             }
+            }
     }
     ?>
         </h2>
@@ -84,7 +79,7 @@ use App\Classes\LocationClass;
             <?php
             if (isset($_COOKIE["EUW"]) || isset($_COOKIE["NA"])) {
                 $guzzle->currentWeek();
-                ?> <h2> Additional champions available in <span class="servername"> ARAM</span> only: </h2>
+                ?> <h2> Champions always available in <span class="servername"> ARAM</span>: </h2>
                 <?php
                 $guzzle->aramChampions();
             }
@@ -110,7 +105,6 @@ use App\Classes\LocationClass;
         if (isset($_COOKIE["EUW"]) || isset($_COOKIE["NA"])) {
             $cd->countholder();
         }
-        $guzzle->clearCache();
         ?>
 </body>
 <script>

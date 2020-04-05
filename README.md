@@ -18,8 +18,8 @@ plus the weekly rotation from before. Which makes the previous two rotations tha
 
 ## About the project
 
-* Displays the free champions available for the current week
-* Displays Aram rotations (cached from previous weeks)
+* Displays the free champions available for the current week, for normal/ARAM
+* Displays Aram rotations (will now have set 65 champions, but removing duplicates)
 * Has an option for both EUW and NA
 * Includes a countdown timer for both servers
 * Has a toggle for dark/light mode which uses cookies
