@@ -180,7 +180,6 @@ class Guzzleclass
         }
         $cache = fopen(dirname(__FILE__) . "/../Cache/rotationEUW.json", "w");
         fwrite($cache, $this->euwBody);
-        ;
         fclose($cache);
     }
 
