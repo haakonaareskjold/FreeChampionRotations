@@ -40,7 +40,6 @@ use App\Classes\RequestClass;
     // test API
     $verify = new Guzzleclass();
     $verify->testAPI();
-
     
     //geolocation
     $location = new LocationClass();
@@ -63,15 +62,16 @@ use App\Classes\RequestClass;
     if (isset($_COOKIE['EUW']) || isset($_COOKIE["NA"])) {
         $guzzle->fetchID();
         ?>
-    <h2>Free champions available in <span class="servername">ARAM</span> or <span class="servername">Normal games</span> on <span class="servername"><?php $guzzle->serverCheck();
-        ?>
+    <h2>Free champions available in <span class="servername">ARAM</span> or <span class="servername">
+            Normal games</span> on <span class="servername"><?php $guzzle->serverCheck();
+            ?>
             </span> server in week 
             <?php
             if (isset($_COOKIE['EUW'])) {
-             echo date('W', strtotime("- 1 day - 2 hour"));
+                echo date('W', strtotime("- 1 day - 2 hour"));
             } elseif (isset($_COOKIE['NA'])) {
                 echo date('W', strtotime("- 1 day - 11 hour"));
-             }
+            }
     }
     ?>
         </h2>

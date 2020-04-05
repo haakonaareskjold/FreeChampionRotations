@@ -11,7 +11,6 @@ use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\ServerException;
 use Twig\Loader\FilesystemLoader;
 
-
 class Guzzleclass
 {
 
@@ -63,8 +62,9 @@ class Guzzleclass
         $this->twig = new Environment($loader);
 
         //loading timers for 4min to change json with REST API
-        $this->euTimer();
-        $this->naTimer();
+        $this->requestEUW();
+//        $this->euTimer();
+//        $this->naTimer();
     }
 
     private function euTimer()
@@ -73,8 +73,11 @@ class Guzzleclass
         $startTime = new DateTime('Tue 01:58');
         $endTime = new DateTime('Tue 02:02');
 
-        if ($currentTime->format('D H:i:s') >= $startTime->format('D H:i:s')
-            && $currentTime->format('D H:i:s') <= $endTime->format('D H:i:s')) {
+        if (
+            $currentTime->format('D H:i:s') >= $startTime->format('D H:i:s')
+            && $currentTime->format('D H:i:s') <= $endTime->format('D H:i:s')
+        ) {
+            echo "EU loaded!";
             $this->requestEUW();
         }
     }
@@ -85,8 +88,10 @@ class Guzzleclass
         $startTime = new DateTime('Tue 10:58');
         $endTime = new DateTime('Tue 11:02');
 
-        if ($currentTime->format('D H:i:s') >= $startTime->format('D H:i:s')
-            && $currentTime->format('D H:i:s') <= $endTime->format('D H:i:s')) {
+        if (
+            $currentTime->format('D H:i:s') >= $startTime->format('D H:i:s')
+            && $currentTime->format('D H:i:s') <= $endTime->format('D H:i:s')
+        ) {
             $this->requestNA();
         }
     }
@@ -107,32 +112,36 @@ class Guzzleclass
                 $code == 400 || $code == 401 || $code == 403 ||
                 $code == 404 || $code == 405 || $code == 415 || $code == 429
             ) {
-                return ($this->twig->render('error.html.twig',
+                return ($this->twig->render(
+                    'error.html.twig',
                     [
                         'error' => 'Client',
                         'code' => $code,
                         'server' => 'NA'
-                    ]));
+                    ]
+                ));
             } elseif ($code == 500 || $code == 502 || $code == 503 || $code == 504) {
-                return ($this->twig->render('error.html.twig',
+                return ($this->twig->render(
+                    'error.html.twig',
                     [
                         'error' => 'Server',
                         'code' => $code,
                         'server' => 'NA'
-                    ]));
+                    ]
+                ));
             }
         }
         if ($this->responseNA->getStatusCode() == 200) {
             $this->naBody = $this->responseNA->getBody();
         }
         $cache = fopen(dirname(__FILE__) . "/../Cache/rotationNA.json", "w");
-        fwrite($cache, $this->naBody);;
+        fwrite($cache, $this->naBody);
+        ;
         fclose($cache);
-        }
+    }
 
     private function requestEUW()
     {
-
 
         try {
             $client = new Client();
@@ -147,26 +156,31 @@ class Guzzleclass
                 $code == 400 || $code == 401 || $code == 403 ||
                 $code == 404 || $code == 405 || $code == 415 || $code == 429
             ) {
-                die ($this->twig->render('error.html.twig',
+                die($this->twig->render(
+                    'error.html.twig',
                     [
                         'error' => 'Client',
                         'code' => $code,
                         'server' => 'EUW'
-                    ]));
+                    ]
+                ));
             } elseif ($code == 500 || $code == 502 || $code == 503 || $code == 504) {
-                die ($this->twig->render('error.html.twig',
+                die($this->twig->render(
+                    'error.html.twig',
                     [
                         'error' => 'Server',
                         'code' => $code,
                         'server' => 'EUW'
-                    ]));
+                    ]
+                ));
             }
         }
         if ($this->responseEUW->getStatusCode() == 200) {
             $this->euwBody = $this->responseEUW->getBody();
-    }
+        }
         $cache = fopen(dirname(__FILE__) . "/../Cache/rotationEUW.json", "w");
-        fwrite($cache, $this->euwBody);;
+        fwrite($cache, $this->euwBody);
+        ;
         fclose($cache);
     }
 
@@ -248,5 +262,4 @@ class Guzzleclass
             echo 'NA';
         }
     }
-
 }
