@@ -9,6 +9,7 @@
 
 * Added an if statement that checks if the caches exist, and loads then despite the timer logic if they dont
 as they are required to display anything in the first place, also added TODOS.
+* Added for devs an auto-fetcher for external IP with phpdotenv if localhost is used to prevent geolocation to break
 
 ### 1.6 - 04/04/2020
 

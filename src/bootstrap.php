@@ -9,7 +9,7 @@ require_once __DIR__ . "/../vendor/autoload.php";
 //phpdotenv
 $dotenv = Dotenv\Dotenv::createMutable(__DIR__ . "/../");
 $dotenv->load();
-$dotenv->required(['API', 'PATCH']);
+$dotenv->required(['API', 'PATCH', 'IP']);
 
 //phpdotenv script to fetch DDragon json to update to newest version automatically
 $client = new Client();

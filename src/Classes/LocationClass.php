@@ -25,10 +25,15 @@ class LocationClass
 
     public function fetch()
     {
-        //If IP is localhost- change to the random IP from .env
-        //this if statement is only for users testing
+        //If IP is localhost or nothing submitted - then will fetch your external IP and use that
         if ($this->ip === "127.0.0.1") {
             $this->ip = getenv('IP');
+            if (getenv('IP') == null) {
+                $externalContent = file_get_contents('http://checkip.dyndns.com/');
+                preg_match('/Current IP Address: \[?([:.0-9a-fA-F]+)\]?/', $externalContent, $m);
+                $externalIp = $m[1];
+                $this->ip = $externalIp;
+            }
         }
 
         $locate = new Client();
