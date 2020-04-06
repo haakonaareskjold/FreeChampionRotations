@@ -43,10 +43,8 @@ use App\Classes\RequestClass;
     
     //geolocation
     $location = new LocationClass();
-    $location->getIP();
-    $location->fetch();
+    $location->noCookies();
     $location->pickServer();
-    $location->geoLocation();
     ?>
 
     <h1>Free Champion Rotations</h1>

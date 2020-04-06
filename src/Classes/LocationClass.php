@@ -9,9 +9,19 @@ class LocationClass
     private $ip;
     public $location;
 
-    #TODO make logic so getIP and fetch methods are only invoked if no cookie exist to prevent sending request too much
 
-    public function getIP()
+    public function noCookies()
+    {
+        if (!isset($_COOKIE["EUW"]) || !isset($_COOKIE["NA"])) {
+            $this->getIP();
+            $this->fetch();
+            $this->pickServer();
+            $this->geoLocation();
+        }
+
+    }
+
+    private function getIP()
     {
         if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
             $this->ip = $_SERVER['HTTP_CLIENT_IP'];
@@ -23,7 +33,7 @@ class LocationClass
         return $this->ip;
     }
 
-    public function fetch()
+    private function fetch()
     {
         //If IP is localhost or nothing submitted - then will fetch your external IP and use that
         if ($this->ip === "127.0.0.1") {
@@ -61,7 +71,7 @@ class LocationClass
     }
 
         
-    public function geoLocation()
+    private function geoLocation()
     {
         if (isset($_COOKIE["EUW"]) || isset($_COOKIE["NA"])) {
             return 0;
