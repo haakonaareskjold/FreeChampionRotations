@@ -65,7 +65,7 @@ class Guzzleclass
         //if cache does not exist at all, fetch them
         $cacheEUW = dirname(__FILE__) . "/../Cache/rotationEUW.json";
         $cacheNA = dirname(__FILE__) . "/../Cache/rotationNA.json";
-        if(!file_exists($cacheEUW) && !file_exists($cacheNA)) {
+        if (!file_exists($cacheEUW) && !file_exists($cacheNA)) {
             $this->requestEUW();
             $this->requestNA();
         }

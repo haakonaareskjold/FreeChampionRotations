@@ -14,7 +14,7 @@ $dotenv->required(['API', 'PATCH']);
 //phpdotenv script to fetch DDragon json to update to newest version automatically
 $client = new Client();
 $response = $client->request(
-    'GET', 
+    'GET',
     'http://ddragon.leagueoflegends.com/api/versions.json'
 );
 $json = $response->getBody();
