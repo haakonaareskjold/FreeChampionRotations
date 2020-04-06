@@ -6,9 +6,9 @@ use DateTime;
 use GuzzleHttp\Client;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
-use Twig\Environment;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\ServerException;
+use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 
 class Guzzleclass
@@ -61,10 +61,18 @@ class Guzzleclass
         $loader = new FilesystemLoader('../templates');
         $this->twig = new Environment($loader);
 
+
+        //if cache does not exist at all, fetch them
+        $cacheEUW = dirname(__FILE__) . "/../Cache/rotationEUW.json";
+        $cacheNA = dirname(__FILE__) . "/../Cache/rotationNA.json";
+        if(!file_exists($cacheEUW) && !file_exists($cacheNA)) {
+            $this->requestEUW();
+            $this->requestNA();
+        }
+
         //loading timers for 4min to change json with REST API
-        $this->requestEUW();
-//        $this->euTimer();
-//        $this->naTimer();
+        $this->euTimer();
+        $this->naTimer();
     }
 
     private function euTimer()

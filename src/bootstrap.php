@@ -4,6 +4,8 @@ use GuzzleHttp\Client;
 
 require_once __DIR__ . "/../vendor/autoload.php";
 
+#TODO
+# move this logic into guzzleclass , make a cache out of the datadragon API, can be checked every 6th hour
 //phpdotenv
 $dotenv = Dotenv\Dotenv::createMutable(__DIR__ . "/../");
 $dotenv->load();

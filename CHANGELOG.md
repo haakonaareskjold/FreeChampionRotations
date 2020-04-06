@@ -5,6 +5,11 @@
 
 ## All notable changes to this publication will be documented in this file.
 
+### 1.6.1 - 06/04/2020
+
+* Added an if statement that checks if the caches exist, and loads then despite the timer logic if they dont
+as they are required to display anything in the first place, also added TODOS.
+
 ### 1.6 - 04/04/2020
 
 * Refactored code so API usage to only load in once a week to prevent rate limiting

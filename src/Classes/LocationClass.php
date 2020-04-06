@@ -9,6 +9,8 @@ class LocationClass
     private $ip;
     public $location;
 
+    #TODO make logic so getIP and fetch methods are only invoked if no cookie exist to prevent sending request too much
+
     public function getIP()
     {
         if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
