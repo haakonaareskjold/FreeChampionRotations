@@ -52,7 +52,7 @@ class Guzzleclass
          */
 
         //API key loading
-        $this->key =  getenv('API'); // API KEY from .env
+        $this->key = getenv('API'); // API KEY from .env
         if ($this->key == "API_KEY_HERE" || $this->key == null) {
             die("<span class=\"httpError\">Please put your actual API key in the .env file.</span>");
         }
@@ -65,8 +65,9 @@ class Guzzleclass
         //if cache does not exist at all, fetch them
         $cacheEUW = dirname(__FILE__) . "/../Cache/rotationEUW.json";
         $cacheNA = dirname(__FILE__) . "/../Cache/rotationNA.json";
-        if (!file_exists($cacheEUW) && !file_exists($cacheNA)) {
+        if (!file_exists($cacheEUW)) {
             $this->requestEUW();
+        } elseif (!file_exists($cacheNA)) {
             $this->requestNA();
         }
 
