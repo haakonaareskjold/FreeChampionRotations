@@ -71,6 +71,11 @@ class Guzzleclass
             $this->requestNA();
         }
 
+        // Doublechecks REST API in case serverlocation location is the opposite (only EU/NA available)
+        // works without doing post request/having cookies existing- mainly for production server
+        $this->remoteNA();
+        $this->remoteEUW();
+
         //loading timers for 4min to change json with REST API
         $this->euTimer();
         $this->naTimer();
@@ -187,6 +192,53 @@ class Guzzleclass
         $file = dirname(__FILE__) . "/../Cache/rotationEUW.json";
         file_put_contents($file, $this->euwBody);
     }
+
+    private function remoteNA()
+    {
+            $currentTime = new DateTime();
+            $startTime = new DateTime('Tue 10:58');
+            $endTime = new DateTime('Tue 11:53');
+
+            if (
+                $currentTime->format('D H:i:s') >= $startTime->format('D H:i:s')
+                && $currentTime->format('D H:i:s') <= $endTime->format('D H:i:s')
+            ) {
+                $cacheNA = dirname(__FILE__) . "/../Cache/rotationNA.json";
+                $array = json_decode(file_get_contents($cacheNA), true);
+                $this->id = $array['freeChampionIds'];
+
+                // Data Dragon JSON
+                $champions = "http://ddragon.leagueoflegends.com/cdn/" . getenv('PATCH') . "/data/en_US/champion.json";
+                $ddragon = new Client();
+                $res = $ddragon->get($champions);
+                $ddragon_json = $res->getBody();
+                $this->content = json_decode($ddragon_json, true);
+            }
+    }
+
+    private function remoteEUW()
+    {
+        $currentTime = new DateTime();
+        $startTime = new DateTime('Tue 01:58');
+        $endTime = new DateTime('Tue 02:53');
+
+        if (
+            $currentTime->format('D H:i:s') >= $startTime->format('D H:i:s')
+            && $currentTime->format('D H:i:s') <= $endTime->format('D H:i:s')
+        ) {
+            $cacheEUW = dirname(__FILE__) . "/../Cache/rotationEUW.json";
+            $array = json_decode(file_get_contents($cacheEUW), true);
+            $this->id = $array['freeChampionIds'];
+
+            // Data Dragon JSON
+            $champions = "http://ddragon.leagueoflegends.com/cdn/" . getenv('PATCH') . "/data/en_US/champion.json";
+            $ddragon = new Client();
+            $res = $ddragon->get($champions);
+            $ddragon_json = $res->getBody();
+            $this->content = json_decode($ddragon_json, true);
+        }
+    }
+
 
 
     public function fetchID()

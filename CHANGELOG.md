@@ -5,11 +5,17 @@
 
 ## All notable changes to this publication will be documented in this file.
 
-### 1.7.1 - 07/04/2020S
+### 1.7.2 - 07/04/2020
+
+* Fixed Readme with some vital information and made time window for rotation to 5min
+* Added backup methods for fetching rotation despite being of opposite server location, 
+would not work before because no cookie or post request sent from wget (with crontab), see readme for example
+
+### 1.7.1 - 07/04/2020
 
 * Fixed issue with overwriting current json rotation
 * Changed writing from fread/fwrite/fclose to file_put_contents
-* Fixed Readme with some vital information and made time window for rotation to 5min
+
 
 ### 1.7 - 06/04/2020
 

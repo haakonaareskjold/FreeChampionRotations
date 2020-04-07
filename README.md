@@ -7,9 +7,10 @@
 - enable the class autoloader and packages required with composer \
   `composer install --no-dev`
 - for testing built-in webserver can be used to run the app \
-  `php -S localhost:8080 -t public/`
+  `php -S localhost:8080 -t pSublic/`
  - For production, use crontab or similar to make it request URL within the time window for rotations
-    * If you want to just use one crontab you can just put it to check every hour(xx:02) on Tuesdays 
+    * If you want to just use one crontab you can just put it to check every hour(xx:02) on Tuesdays e.g. \
+    `2 1-12 * * 2 wget -O https://example.com >/dev/null 2>&1` 
      * App also needs access to write files (755 should be fine) for file_put_contents when new API is being cached
 ## Important changes - 31/03/2020
 - Riot changed how ARAM rotations works as of 31/03/2020, legacy code with old rotation system is still available.   [Click here](https://plebs.website)
