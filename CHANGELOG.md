@@ -8,6 +8,7 @@
 ### 1.7.1 - 07/04/2020
 
 * Fixed issue with overwriting current json rotation
+* Changed writing from fread/fwrite/fclose to file_put_contents
 
 ### 1.7 - 06/04/2020
 

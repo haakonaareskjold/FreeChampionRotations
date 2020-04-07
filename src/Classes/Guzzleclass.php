@@ -142,9 +142,8 @@ class Guzzleclass
         if ($this->responseNA->getStatusCode() == 200) {
             $this->naBody = $this->responseNA->getBody();
         }
-        $cache = fopen(dirname(__FILE__) . "/../Cache/rotationNA.json", "rw+");
-        fwrite($cache, $this->naBody, 100);
-        fclose($cache);
+        $file = dirname(__FILE__) . "/../Cache/rotationNA.json";
+        file_put_contents($file, $this->naBody);
     }
 
     private function requestEUW()
@@ -185,9 +184,8 @@ class Guzzleclass
         if ($this->responseEUW->getStatusCode() == 200) {
             $this->euwBody = $this->responseEUW->getBody();
         }
-        $cache = fopen(dirname(__FILE__) . "/../Cache/rotationEUW.json", "rw+");
-        fwrite($cache, $this->euwBody, 100);
-        fclose($cache);
+        $file = dirname(__FILE__) . "/../Cache/rotationEUW.json";
+        file_put_contents($file, $this->euwBody);
     }
 
 
