@@ -5,6 +5,10 @@
 
 ## All notable changes to this publication will be documented in this file.
 
+### 1.7.1 - 07/04/2020
+
+* Fixed issue with overwriting current json rotation
+
 ### 1.7 - 06/04/2020
 
 * Added an if statement that checks if the caches exist, and loads then despite the timer logic if they dont

@@ -86,7 +86,6 @@ class Guzzleclass
             $currentTime->format('D H:i:s') >= $startTime->format('D H:i:s')
             && $currentTime->format('D H:i:s') <= $endTime->format('D H:i:s')
         ) {
-            echo "EU loaded!";
             $this->requestEUW();
         }
     }
@@ -95,7 +94,7 @@ class Guzzleclass
     {
         $currentTime = new DateTime();
         $startTime = new DateTime('Tue 10:58');
-        $endTime = new DateTime('Tue 11:02');
+        $endTime = new DateTime('Tue 11:05');
 
         if (
             $currentTime->format('D H:i:s') >= $startTime->format('D H:i:s')
@@ -143,9 +142,8 @@ class Guzzleclass
         if ($this->responseNA->getStatusCode() == 200) {
             $this->naBody = $this->responseNA->getBody();
         }
-        $cache = fopen(dirname(__FILE__) . "/../Cache/rotationNA.json", "w");
-        fwrite($cache, $this->naBody);
-        ;
+        $cache = fopen(dirname(__FILE__) . "/../Cache/rotationNA.json", "rw+");
+        fwrite($cache, $this->naBody, 100);
         fclose($cache);
     }
 
@@ -187,8 +185,8 @@ class Guzzleclass
         if ($this->responseEUW->getStatusCode() == 200) {
             $this->euwBody = $this->responseEUW->getBody();
         }
-        $cache = fopen(dirname(__FILE__) . "/../Cache/rotationEUW.json", "w");
-        fwrite($cache, $this->euwBody);
+        $cache = fopen(dirname(__FILE__) . "/../Cache/rotationEUW.json", "rw+");
+        fwrite($cache, $this->euwBody, 100);
         fclose($cache);
     }
 
