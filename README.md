@@ -8,7 +8,9 @@
   `composer install --no-dev`
 - for testing built-in webserver can be used to run the app \
   `php -S localhost:8080 -t public/`
-  
+ - For production, use crontab or similar to make it request URL within the time window for rotations
+    * If you want to just use one crontab you can just put it to check every hour(xx:02) on Tuesdays 
+     * App also needs access to write files (755 should be fine) for file_put_contents when new API is being cached
 ## Important changes - 31/03/2020
 - Riot changed how ARAM rotations works as of 31/03/2020, legacy code with old rotation system is still available.   [Click here](https://plebs.website)
 to see it. Else it is available under **legacy** branch

@@ -5,10 +5,11 @@
 
 ## All notable changes to this publication will be documented in this file.
 
-### 1.7.1 - 07/04/2020
+### 1.7.1 - 07/04/2020S
 
 * Fixed issue with overwriting current json rotation
 * Changed writing from fread/fwrite/fclose to file_put_contents
+* Fixed Readme with some vital information and made time window for rotation to 5min
 
 ### 1.7 - 06/04/2020
 

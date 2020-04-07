@@ -80,7 +80,7 @@ class Guzzleclass
     {
         $currentTime = new DateTime();
         $startTime = new DateTime('Tue 01:58');
-        $endTime = new DateTime('Tue 02:40');
+        $endTime = new DateTime('Tue 02:03');
 
         if (
             $currentTime->format('D H:i:s') >= $startTime->format('D H:i:s')
@@ -94,7 +94,7 @@ class Guzzleclass
     {
         $currentTime = new DateTime();
         $startTime = new DateTime('Tue 10:58');
-        $endTime = new DateTime('Tue 11:02');
+        $endTime = new DateTime('Tue 11:03');
 
         if (
             $currentTime->format('D H:i:s') >= $startTime->format('D H:i:s')
