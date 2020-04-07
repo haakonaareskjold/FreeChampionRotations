@@ -199,21 +199,21 @@ class Guzzleclass
             $startTime = new DateTime('Tue 10:58');
             $endTime = new DateTime('Tue 11:53');
 
-            if (
+        if (
                 $currentTime->format('D H:i:s') >= $startTime->format('D H:i:s')
                 && $currentTime->format('D H:i:s') <= $endTime->format('D H:i:s')
-            ) {
-                $cacheNA = dirname(__FILE__) . "/../Cache/rotationNA.json";
-                $array = json_decode(file_get_contents($cacheNA), true);
-                $this->id = $array['freeChampionIds'];
+        ) {
+            $cacheNA = dirname(__FILE__) . "/../Cache/rotationNA.json";
+            $array = json_decode(file_get_contents($cacheNA), true);
+            $this->id = $array['freeChampionIds'];
 
-                // Data Dragon JSON
-                $champions = "http://ddragon.leagueoflegends.com/cdn/" . getenv('PATCH') . "/data/en_US/champion.json";
-                $ddragon = new Client();
-                $res = $ddragon->get($champions);
-                $ddragon_json = $res->getBody();
-                $this->content = json_decode($ddragon_json, true);
-            }
+            // Data Dragon JSON
+            $champions = "http://ddragon.leagueoflegends.com/cdn/" . getenv('PATCH') . "/data/en_US/champion.json";
+            $ddragon = new Client();
+            $res = $ddragon->get($champions);
+            $ddragon_json = $res->getBody();
+            $this->content = json_decode($ddragon_json, true);
+        }
     }
 
     private function remoteEUW()
