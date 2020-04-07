@@ -18,7 +18,6 @@ class LocationClass
             $this->pickServer();
             $this->geoLocation();
         }
-
     }
 
     private function getIP()
