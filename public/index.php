@@ -15,7 +15,6 @@ use App\Classes\CountholderClass;
 use App\Classes\Guzzleclass;
 use App\Classes\LocationClass;
 use App\Classes\RequestClass;
-
 ?>
 <!DOCTYPE html>
 <html lang="en">

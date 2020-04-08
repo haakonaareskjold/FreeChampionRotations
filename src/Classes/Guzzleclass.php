@@ -61,10 +61,9 @@ class Guzzleclass
         $loader = new FilesystemLoader('../templates');
         $this->twig = new Environment($loader);
 
-
         //if cache does not exist at all, fetch them
-        $cacheEUW = dirname(__FILE__) . "/../Cache/rotationEUW.json";
-        $cacheNA = dirname(__FILE__) . "/../Cache/rotationNA.json";
+        $cacheEUW = dirname(__FILE__) . "/../../resources/Cache/rotationEUW.json";
+        $cacheNA = dirname(__FILE__) . "/../../resources/Cache/rotationNA.json";
         if (!file_exists($cacheEUW)) {
             $this->requestEUW();
         } elseif (!file_exists($cacheNA)) {
@@ -147,7 +146,7 @@ class Guzzleclass
         if ($this->responseNA->getStatusCode() == 200) {
             $this->naBody = $this->responseNA->getBody();
         }
-        $file = dirname(__FILE__) . "/../Cache/rotationNA.json";
+        $file = dirname(__FILE__) . "/../../resources/Cache/rotationNA.json";
         file_put_contents($file, $this->naBody);
     }
 
@@ -189,7 +188,7 @@ class Guzzleclass
         if ($this->responseEUW->getStatusCode() == 200) {
             $this->euwBody = $this->responseEUW->getBody();
         }
-        $file = dirname(__FILE__) . "/../Cache/rotationEUW.json";
+        $file = dirname(__FILE__) . "/../../resources/Cache/rotationEUW.json";
         file_put_contents($file, $this->euwBody);
     }
 
@@ -203,7 +202,7 @@ class Guzzleclass
                 $currentTime->format('D H:i:s') >= $startTime->format('D H:i:s')
                 && $currentTime->format('D H:i:s') <= $endTime->format('D H:i:s')
         ) {
-            $cacheNA = dirname(__FILE__) . "/../Cache/rotationNA.json";
+            $cacheNA = dirname(__FILE__) . "/../../resources/Cache/rotationNA.json";
             $array = json_decode(file_get_contents($cacheNA), true);
             $this->id = $array['freeChampionIds'];
 
@@ -226,7 +225,7 @@ class Guzzleclass
             $currentTime->format('D H:i:s') >= $startTime->format('D H:i:s')
             && $currentTime->format('D H:i:s') <= $endTime->format('D H:i:s')
         ) {
-            $cacheEUW = dirname(__FILE__) . "/../Cache/rotationEUW.json";
+            $cacheEUW = dirname(__FILE__) . "/../../resources/Cache/rotationEUW.json";
             $array = json_decode(file_get_contents($cacheEUW), true);
             $this->id = $array['freeChampionIds'];
 
@@ -244,11 +243,11 @@ class Guzzleclass
     public function fetchID()
     {
         if (isset($_POST['EUW']) || isset($_COOKIE['EUW'])) {
-            $cacheEUW = dirname(__FILE__) . "/../Cache/rotationEUW.json";
+            $cacheEUW = dirname(__FILE__) . "/../../resources/Cache/rotationEUW.json";
             $array = json_decode(file_get_contents($cacheEUW), true);
             $this->id = $array['freeChampionIds'];
         } elseif (isset($_POST['NA']) || isset($_COOKIE['NA'])) {
-            $cacheNA = dirname(__FILE__) . "/../Cache/rotationNA.json";
+            $cacheNA = dirname(__FILE__) . "/../../resources/Cache/rotationNA.json";
             $array = json_decode(file_get_contents($cacheNA), true);
             $this->id = $array['freeChampionIds'];
         }
@@ -284,7 +283,7 @@ class Guzzleclass
 
     public function aramChampions()
     {
-        $json = dirname(__FILE__) . "/../alwaysaram.json";
+        $json = dirname(__FILE__) . "/../../resources/alwaysaram.json";
             $json_array = json_decode(file_get_contents($json), true);
             $result = $json_array['always'];
 

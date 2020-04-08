@@ -5,6 +5,10 @@
 
 ## All notable changes to this publication will be documented in this file.
 
+### 1.7.3 - 08/04/2020
+
+* Refactored some code, added new dir with resources for Cache and other files that are not PHP
+
 ### 1.7.2 - 07/04/2020
 
 * Fixed Readme with some vital information and made time window for rotation to 5min
