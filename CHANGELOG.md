@@ -5,6 +5,10 @@
 
 ## All notable changes to this publication will be documented in this file.
 
+### 1.7.4 - 09/04/2020
+
+* Added bin/ directory with two executable php scripts made to be used with crontab, see readme
+
 ### 1.7.3 - 08/04/2020
 
 * Refactored some code, added new dir with resources for Cache and other files that are not PHP
