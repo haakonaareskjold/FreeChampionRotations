@@ -8,6 +8,7 @@
 ### 1.7.4 - 09/04/2020
 
 * Added bin/ directory with two executable php scripts made to be used with crontab, see readme
+* Added docs/ directory for installation.md
 
 ### 1.7.3 - 08/04/2020
 
