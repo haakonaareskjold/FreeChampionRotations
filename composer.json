@@ -1,6 +1,6 @@
 {
-    "name": "haakon/free-champions-rotations",
-    "description": "REST API to display weekly champion rotations",
+    "name": "haakon/free-champion-rotations",
+    "description": "Project displaying the free champion rotations for League of Legends",
     "type": "project",
     "license": "MIT",
     "authors": [
@@ -16,7 +16,6 @@
       "ext-json": "*",
         "guzzlehttp/guzzle": "^6.5",
         "vlucas/phpdotenv": "^4.1",
-        "spatie/guzzle-rate-limiter-middleware": "^1.0",
         "twig/twig": "^3.0"
     },
     "autoload": {
