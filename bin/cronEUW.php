@@ -1,6 +1,7 @@
 <?php
 
 use GuzzleHttp\Client;
+
 require_once __DIR__ . "/../src/bootstrap.php";
 
 $key = getenv('API'); // API KEY from .env
@@ -27,4 +28,3 @@ if (
     $file = dirname(__FILE__) . "/../resources/Cache/rotationEUW.json";
     file_put_contents($file, $fetchBody);
 }
-
