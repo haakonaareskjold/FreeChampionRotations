@@ -3,10 +3,16 @@
 namespace App\Classes;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Exception\ServerException;
+use Twig\Environment;
+use Twig\Loader\FilesystemLoader;
 
 class LocationClass
 {
-    private $ip;
+    public $ip;
+    public $twig;
+    private $response;
     public $location;
 
 
@@ -45,11 +51,33 @@ class LocationClass
             }
         }
 
+        //Twig
+        $loader = new FilesystemLoader('../templates');
+        $this->twig = new Environment($loader);
         $locate = new Client();
-        $response = $locate->request('GET', "https://api.ipgeolocationapi.com/geolocate/" . $this->ip);
-        $json =  $response->getBody();
-        $arr = json_decode($json, true);
-        $this->location = $arr['continent'];
+        try {
+            $this->response = $locate->request(
+                'GET',
+                "https://api.ipgeolocationapi.com/geolocate/" . $this->ip
+            );
+        } catch (ClientException | ServerException $e) {
+            $code = $e->getResponse()->getStatusCode();
+            if (
+                $code == 500
+            ) {
+                echo $this->twig->render(
+                    'locate.html.twig',
+                    [
+                        'code' => $code
+                    ]
+                );
+            }
+        }
+        if ($this->response->getStatusCode() == 200) {
+            $json = $this->response->getBody();
+            $arr = json_decode($json, true);
+            $this->location = $arr['continent'];
+        }
     }
 
     public function pickServer()

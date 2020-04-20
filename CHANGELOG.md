@@ -5,6 +5,11 @@
 
 ## All notable changes to this publication will be documented in this file.
 
+### 1.7.5 - 20/04/2020
+
+* Added a twig templating for errors that can occur if using VPN (server error 500) \ 
+needs further investigation, some IPs will cause the geolocation API to not run (internal 500)
+
 ### 1.7.4 - 09/04/2020
 
 * Added bin/ directory with two executable php scripts made to be used with crontab, see readme

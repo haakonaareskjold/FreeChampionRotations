@@ -124,23 +124,23 @@ class Guzzleclass
                 $code == 400 || $code == 401 || $code == 403 ||
                 $code == 404 || $code == 405 || $code == 415 || $code == 429
             ) {
-                return ($this->twig->render(
+                echo $this->twig->render(
                     'error.html.twig',
                     [
                         'error' => 'Client',
                         'code' => $code,
                         'server' => 'NA'
                     ]
-                ));
+                );
             } elseif ($code == 500 || $code == 502 || $code == 503 || $code == 504) {
-                return ($this->twig->render(
+                echo $this->twig->render(
                     'error.html.twig',
                     [
                         'error' => 'Server',
                         'code' => $code,
                         'server' => 'NA'
                     ]
-                ));
+                );
             }
         }
         if ($this->responseNA->getStatusCode() == 200) {
@@ -166,23 +166,23 @@ class Guzzleclass
                 $code == 400 || $code == 401 || $code == 403 ||
                 $code == 404 || $code == 405 || $code == 415 || $code == 429
             ) {
-                die($this->twig->render(
+                echo $this->twig->render(
                     'error.html.twig',
                     [
                         'error' => 'Client',
                         'code' => $code,
                         'server' => 'EUW'
                     ]
-                ));
+                );
             } elseif ($code == 500 || $code == 502 || $code == 503 || $code == 504) {
-                die($this->twig->render(
+                echo $this->twig->render(
                     'error.html.twig',
                     [
                         'error' => 'Server',
                         'code' => $code,
                         'server' => 'EUW'
                     ]
-                ));
+                );
             }
         }
         if ($this->responseEUW->getStatusCode() == 200) {
