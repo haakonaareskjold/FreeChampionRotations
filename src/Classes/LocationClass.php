@@ -21,7 +21,6 @@ class LocationClass
         if (!isset($_COOKIE["EUW"]) || !isset($_COOKIE["NA"])) {
             $this->getIP();
             $this->fetch();
-            $this->pickServer();
             $this->geoLocation();
         }
     }
