@@ -14,7 +14,6 @@ require_once __DIR__ . "/../src/bootstrap.php";
 use App\Classes\CountholderClass;
 use App\Classes\Guzzleclass;
 use App\Classes\LocationClass;
-use App\Classes\RequestClass;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -48,7 +47,7 @@ use App\Classes\RequestClass;
 
     <h1>Free Champion Rotations</h1>
     <h1 class="game">League of Legends</h1>
-    <form method="POST">
+    <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
         <input class="submit" type="submit" name="EUW" value="EUW">
         <input class="submit" type="submit" name="NA" value="NA">
     </form>

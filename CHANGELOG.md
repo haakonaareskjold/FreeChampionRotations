@@ -5,6 +5,10 @@
 
 ## All notable changes to this publication will be documented in this file.
 
+### 1.7.6 - 26/04/2020
+
+* Added form validation with htmlspecialchar for POST action
+
 ### 1.7.5 - 20/04/2020
 
 * Added a twig templating for errors that can occur if using VPN (server error 500) \ 
