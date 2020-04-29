@@ -5,7 +5,7 @@
 - enable the class autoloader and packages required with composer \
   `composer install --no-dev`
 - for testing built-in webserver can be used to run the app \
-  `php -S localhost:8080 -t public/`
+  `composer start`
  - For production, use crontab or similar to update API, either by wget/cURL 
   to URL or execute the scripts in bin/ at the time window
     * If you want to just use one crontab you can just put it to check every hour(xx:02) on Tuesdays e.g. \
