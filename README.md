@@ -14,6 +14,7 @@
 * no ads
 * The app do not collect any information- one cookie by default (geolocate on what server to put you, and remembers),
 other cookie is only created if light mode is chosen.
+* Docker-compose testing environment
 
 ## Important changes - 31/03/2020
 - Riot changed how ARAM rotations works as of 31/03/2020, legacy code with old rotation system is still available.

@@ -8,6 +8,7 @@
 ### 1.8 03/05/2020
 
 * Added testing environment for docker-compose, creates two containers, installs composer dependencies also.
+* Fixed error with chown/chmod for docker container not being able to write, group and user set to www-data with 775.
 
 ### 1.7.6 - 26/04/2020
 
