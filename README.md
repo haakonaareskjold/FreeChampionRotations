@@ -1,6 +1,6 @@
 # Free Champion Rotations for League of Legends
 
-### Installation docs can be found in docs/installation.md
+### Installation docs can be found in docs/installation.md, please read them!
 
 ## About the project
 
