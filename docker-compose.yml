@@ -23,3 +23,13 @@ services:
       volumes:
         - .:/application
         - .env.example:/application/.env
+
+    composer:
+      build: phpdocker/composer
+      container_name: freechampionrotations-composer
+      working_dir: /application
+      volumes: 
+        - .:/application
+      command: bash -c "echo downloading files, please wait.. && composer install --no-dev && composer dumpautoload && echo Composer dependendencies successfully installed, shutting down composer container..."
+      depends_on: 
+        - php-fpm
