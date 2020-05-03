@@ -5,6 +5,10 @@
 
 ## All notable changes to this publication will be documented in this file.
 
+### 1.8 03/05/2020
+
+* Added testing environment for docker-compose, creates two containers, installs composer dependencies also.
+
 ### 1.7.6 - 26/04/2020
 
 * Added form validation with htmlspecialchar for POST action

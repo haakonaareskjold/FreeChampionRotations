@@ -4,6 +4,7 @@
 - Replace the API Value with your own key, in .env.example 
 - Build it with docker-compose \
 `docker-compose up -d --build`
+- can be seen on `localhost:8080` in browser
  - For production, use crontab or similar to update API, either by wget/cURL 
   to URL or execute the scripts in bin/ at the time window
     * If you want to just use one crontab you can just put it to check every hour(xx:02) on Tuesdays e.g. \
