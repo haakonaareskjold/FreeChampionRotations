@@ -39,8 +39,9 @@ class LocationClass
 
     private function fetch()
     {
-        //If IP is localhost or nothing submitted - then will fetch your external IP and use that
-        if ($this->ip === "127.0.0.1") {
+        // If IP is localhost or nothing submitted - then will fetch your external IP and use that
+        // IP addresses starting with 172.20.0. are for docker-compose environments
+        if ($this->ip === "127.0.0.1" || $this->ip === "172.20.0.1" || $this->ip === "172.20.0.2") {
             $this->ip = getenv('IP');
             if (getenv('IP') == null) {
                 $externalContent = file_get_contents('http://checkip.dyndns.com/');
