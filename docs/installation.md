@@ -6,7 +6,7 @@
 - Replace the API Value with your own key, in .env.example 
 - Build it with docker-compose \
 `docker-compose up -d --build`
-- When the container called freechampionrotations-composer shuts down, the App is ready and accessible 
+- When the container called freechampionrotations-composer/kamikaze shuts down, the App is ready and accessible 
 - can be seen on `localhost:8080` in browser
  - For production, use crontab or similar to update API, either by wget/cURL 
   to URL or execute the scripts in bin/ within the time window is recommended

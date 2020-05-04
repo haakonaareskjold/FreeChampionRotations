@@ -5,7 +5,11 @@
 
 ## All notable changes to this publication will be documented in this file.
 
-### 1.8 03/05/2020
+### 1.8b - 04/05/2020
+
+* Fixed an issue with docker containers crashing making it only accessible on windows, but not on unix-like system because of permissions(chown/chmod), added a kamikaze container that will crash itself after its intended purpose of setting the environment correctly
+
+### 1.8a -  03/05/2020
 
 * Added testing environment for docker-compose, creates two containers, installs composer dependencies also.
 * Fixed error with chown/chmod for docker container not being able to write, group and user set to www-data with 775.
