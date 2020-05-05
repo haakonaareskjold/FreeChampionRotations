@@ -2,37 +2,10 @@ version: "3.1"
 services:
 
     webserver:
-      build: phpdocker/nginx
+      build: webserver
       container_name: freechampionrotations-webserver
-      working_dir: /var/www/application
+      working_dir: /var/www/app
       volumes:
-          - .:/var/www/application
+          - .:/var/www/app
       ports:
        - "8080:80"
-
-    php-fpm:
-      build: phpdocker/php-fpm
-      container_name: freechampionrotations-php-fpm
-      working_dir: /var/www/application
-      volumes:
-        - .:/var/www/application
-
-    composer:
-      build: phpdocker/composer
-      container_name: freechampionrotations-composer
-      working_dir: /var/www/application
-      volumes: 
-        - .:/var/www/application
-      command: bash -c "composer install --no-dev && composer dumpautoload"
-
-    kamikaze:
-      build: phpdocker/kamikaze
-      container_name: freechampionrotations-kamikaze
-      working_dir: /var/www/application
-      volumes: 
-        - .:/var/www/application
-      command: bash -c "chmod -R 775 ./ && chown -R www-data:www-data ./"
-      depends_on: 
-        - composer
-        - php-fpm
-        - webserver

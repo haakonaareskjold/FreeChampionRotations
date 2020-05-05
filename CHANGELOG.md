@@ -5,6 +5,10 @@
 
 ## All notable changes to this publication will be documented in this file.
 
+### 1.8 - 05/05/2020
+
+* Optimized the docker container issues. Had issue with crashing containers because of CMD/Entrypoint in the images used, put all in one and added an infinite bash loop to keep the web container alive. Refactored so its built of an ubuntu image for stability and easier accessibility. It installs nginx, php-fpm through APT, and composer is downloaded and installed through curl
+
 ### 1.8b - 04/05/2020
 
 * Fixed an issue with docker containers crashing making it only accessible on windows, but not on unix-like system because of permissions(chown/chmod), added a kamikaze container that will crash itself after its intended purpose of setting the environment correctly
