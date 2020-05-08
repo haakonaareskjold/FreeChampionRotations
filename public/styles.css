@@ -133,7 +133,10 @@ div.item {
   display: inline-block;
   width: 100px;
   align-content: center;
+  font-size: 0.8rem;
 }
+
+
 
 img {
   width: 100px;

@@ -5,6 +5,10 @@
 
 ## All notable changes to this publication will be documented in this file.
 
+### 1.8.1 - 08/05/2020
+
+* Fixed css img div issue where the container would be too big because of champion name length, adjusted with rem to fit the viewport
+
 ### 1.8 - 05/05/2020
 
 * Optimized the docker container issues. Had issue with crashing containers because of CMD/Entrypoint in the images used, put all in one and added an infinite bash loop to keep the web container alive. Refactored so its built of an ubuntu image for stability and easier accessibility. It installs nginx, php-fpm through APT, and composer is downloaded and installed through curl
