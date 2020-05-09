@@ -41,11 +41,12 @@ class LocationClass
     {
         // If IP is localhost or nothing submitted - then will fetch your external IP and use that
         // IP address gets filtered to check for private IP because of docker environment (172 subnet)
-        $results = filter_var($this->ip,
-            FILTER_VALIDATE_IP, 
-           FILTER_FLAG_NO_PRIV_RANGE |  FILTER_FLAG_NO_RES_RANGE
+        $results = filter_var(
+            $this->ip,
+            FILTER_VALIDATE_IP,
+            FILTER_FLAG_NO_PRIV_RANGE |  FILTER_FLAG_NO_RES_RANGE
         );
-        if ($this->ip === "127.0.0.1" || $results == false){
+        if ($this->ip === "127.0.0.1" || $results == false) {
             $this->ip = getenv('IP');
             if (getenv('IP') == null) {
                 $externalContent = file_get_contents('http://checkip.dyndns.com/');
