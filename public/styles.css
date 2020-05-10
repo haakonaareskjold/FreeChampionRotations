@@ -133,7 +133,6 @@ div.item {
   display: inline-block;
   width: 100px;
   align-content: center;
-  font-size: 0.8rem;
 }
 
 
@@ -141,7 +140,6 @@ div.item {
 img {
   width: 100px;
   height: 100px;
-  background-color: grey;
 }
 .caption {
   display: block;
@@ -151,6 +149,8 @@ img {
   color: wheat;
   font-weight: 900;
   background-color: #cc3300;
+  font-family: monospace;
+  font-size: 0.9rem;
 }
 
 .bgButton {
