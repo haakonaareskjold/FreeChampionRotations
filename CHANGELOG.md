@@ -5,6 +5,10 @@
 
 ## All notable changes to this publication will be documented in this file.
 
+### 1.8.2 - 13/05/2020
+
+* Change in dockerfile to put specific ownership for the Cache dir to www-data, problem with file_put_contents and file_get_contents because ownership was set to 1000 in this dir
+
 ### 1.8.1 - 08/05/2020
 
 * Fixed css img div issue where the container would be too big because of champion name length, adjusted with rem to fit the viewport
