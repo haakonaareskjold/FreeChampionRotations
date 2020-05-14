@@ -13,7 +13,7 @@ RUN apt-get update \
 
 RUN apt-get update \
     && apt-get install -y \
-    php7.4-fpm php7.4-zip vim cron
+    php7.4-fpm php7.4-zip cron vim-tiny
 
 RUN mkdir -p /run/php/
 
