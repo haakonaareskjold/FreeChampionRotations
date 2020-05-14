@@ -26,5 +26,6 @@ RUN curl -sS https://getcomposer.org/installer | php \
 COPY default.nginx /etc/nginx/sites-enabled/default
 
 # Runs PHP-FPM and NGINX, executes through bash the composer install, chown the cache dir and then infinite loop to keep container alive
-CMD /usr/sbin/php-fpm7.4 && /usr/sbin/nginx && /bin/bash -c "chown :www-data resources/Cache && composer install --no-dev && composer dumpautoload \
+CMD /usr/sbin/php-fpm7.4 && /usr/sbin/nginx && /bin/bash -c "chmod -R 775 ./ && chown :www-data resources/Cache && \
+composer install --no-dev && composer dumpautoload \
 && while true; do sleep 30; done;"
