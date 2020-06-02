@@ -5,6 +5,10 @@
 
 ## All notable changes to this publication will be documented in this file.
 
+### 1.8.3 - 02/06/2020
+
+* Added alt text attribute to champion images for better access
+
 ### 1.8.2 - 13/05/2020
 
 * Change in dockerfile to put specific ownership for the Cache dir to www-data, problem with file_put_contents and file_get_contents because ownership was set to 1000 in this dir
