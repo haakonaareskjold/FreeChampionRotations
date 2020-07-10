@@ -14,6 +14,8 @@ require_once __DIR__ . "/../src/bootstrap.php";
 use App\Classes\CountholderClass;
 use App\Classes\Guzzleclass;
 use App\Classes\LocationClass;
+
+ob_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
