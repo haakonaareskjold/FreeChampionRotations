@@ -1,0 +1,8 @@
+.env.example
+docker-compose.yml
+.dockerignore
+.dockerenv
+CHANGELOG.md
+LICENCE.md
+README.md
+.git

@@ -7,7 +7,7 @@
 
 ### 1.8.4 - 10/07/2020
 
-* Added ob_start to prevent problems with modified header information in docker container. Also added new dockerfiles that is isolated (new images).
+* Added ob_start to prevent problems with modified header information in docker container. Also added new dockerfiles that is isolated, new images seperately for webserver (nginx), php-fpm and composer.
 
 ### 1.8.3 - 02/06/2020
 
