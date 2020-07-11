@@ -5,6 +5,10 @@
 
 ## All notable changes to this publication will be documented in this file
 
+### 1.8.6 - 12/07/2020
+
+* removed some actions from the Dockerfile (for the php-fpm/app), including cron- as it isn't set up for the Docker stack i've made (just for development/testing).
+
 ### 1.8.5 - 11/07/2020
 
 * Added and fixed errors with permissions in new docker containers, changed php-fpm image to dockerfile build for permission args

@@ -4,7 +4,6 @@ services:
                 build:
                         context: ./docker
                         dockerfile: Dockerfile
-                image: php-fpm
                 container_name: app
                 restart: unless-stopped
                 volumes:
