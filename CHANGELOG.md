@@ -5,6 +5,10 @@
 
 ## All notable changes to this publication will be documented in this file
 
+### 1.8.5 - 11/07/2020
+
+* Added and fixed errors with permissions in new docker containers, changed php-fpm image to dockerfile build for permission args
+
 ### 1.8.4 - 10/07/2020
 
 * Added ob_start to prevent problems with modified header information in docker container. Also added new dockerfiles that is isolated, new images seperately for webserver (nginx), php-fpm and composer.
