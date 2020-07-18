@@ -5,6 +5,10 @@
 
 ## All notable changes to this publication will be documented in this file
 
+### 1.8.7 - 18/07/2020
+
+* Swapped php-fpm image with an Alpine image, changed user/permission to make container more secure.
+
 ### 1.8.6 - 12/07/2020
 
 * removed some actions from the Dockerfile (for the php-fpm/app), including cron- as it isn't set up for the Docker stack i've made (just for development/testing).

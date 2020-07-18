@@ -1,6 +1,15 @@
-FROM php:7.4-fpm
-ARG UID=1000
-ARG GID=1000
-RUN useradd -G www-data,root -u 1000 FCRuser
+FROM php:7.4-fpm-alpine
 WORKDIR /var/www/app
-USER ${UID}:${GID}
+ARG USER=FCRuser
+ARG ID=1000
+
+RUN adduser \
+    --disabled-password \
+    --gecos "" \
+    --home "$(pwd)" \
+    --no-create-home \
+    --uid ${ID} \
+    ${USER}
+
+
+USER ${ID}:${ID}
