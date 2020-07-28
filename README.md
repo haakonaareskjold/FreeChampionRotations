@@ -17,8 +17,7 @@ other cookie is only created if light mode is chosen.
 * Can also be run with docker-compose
 
 ## Important changes - 31/03/2020
-- Riot changed how ARAM rotations works as of 31/03/2020, legacy code with old rotation system is still available.
-[Click here](https://plebs.website) to see it. Else it is available under **legacy** branch
+- Riot changed how ARAM rotations works as of 31/03/2020, it is available under **legacy** branch
 - major difference between legacy and current system is that now it displays 65 champions
 that are always available in ARAM, plus the weekly rotation from before.
 Which makes the previous two rotations that used to be cached obsolete.
