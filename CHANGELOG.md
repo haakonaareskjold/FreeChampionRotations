@@ -5,6 +5,10 @@
 
 ## All notable changes to this publication will be documented in this file
 
+### 1.8.7 - 01/08/2020
+
+* Added an example.png in the README.md showing how the layout will look like when its on a website
+
 ### 1.8.7 - 18/07/2020
 
 * Swapped php-fpm image with an Alpine image, changed user/permission to make container more secure.

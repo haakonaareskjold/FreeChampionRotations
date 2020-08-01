@@ -16,6 +16,9 @@
 other cookie is only created if light mode is chosen.
 * Can also be run with docker-compose
 
+## How it will look like
+![Example of site layout](https://i.imgur.com/XGC8WJA.png)
+
 ## Important changes - 31/03/2020
 - Riot changed how ARAM rotations works as of 31/03/2020, it is available under **legacy** branch
 - major difference between legacy and current system is that now it displays 65 champions
