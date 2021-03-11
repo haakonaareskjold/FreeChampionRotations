@@ -26,6 +26,8 @@ ob_start();
     <title>Free Champion Rotations</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <meta name="description" 
     content="A simple website displaying the current free weekly champion rotation for League of Legends">
     <meta name="keywords" content="LOL, league of legends, free champions, rotations, current week">

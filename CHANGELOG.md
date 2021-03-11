@@ -5,6 +5,10 @@
 
 ## All notable changes to this publication will be documented in this file
 
+### 1.8.8 - 11/03/2021
+
+* Added Roboto from google fonts as a default font-family was missing
+
 ### 1.8.7 - 01/08/2020
 
 * Added an example.png in the README.md showing how the layout will look like when its on a website
